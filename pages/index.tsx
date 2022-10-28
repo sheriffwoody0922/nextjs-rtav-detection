@@ -5,9 +5,9 @@ import { useRouter } from "next/router";
 
 
 import Box from '@mui/material/Box';
-import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import InputIcon from '@mui/icons-material/Input';
+import AppRegistrationIcon from '@mui/icons-material/AppRegistration';
 
 import styles from '../styles/Home.module.css'
 
@@ -30,16 +30,16 @@ export default function Home() {
         <Box
           component="form"
           sx={{
-             m: 4, 
-             width: '300px',
+            '& > :not(style)': { m: 4, width: '300px' },
           }}
           noValidate
           autoComplete="off"
         >
-          <TextField className={styles.logininput} id="user-name" label="User Name"  variant="filled" />
-          <TextField className={styles.logininput} id="user-password" label="Password" type="password" variant="filled" />
-          <Button className={styles.loginbutton} onClick={()=>router.push('/admin/dashboard/all')} variant="contained" endIcon={<InputIcon />}>
+          <Button className={styles.logobutton} onClick={()=>router.push('/auth/login')} variant="contained" endIcon={<InputIcon />}>
             Login 
+          </Button>
+          <Button className={styles.logobutton} onClick={()=>router.push('/auth/register')} variant="contained" endIcon={<AppRegistrationIcon />}>
+            Register 
           </Button>
         </Box>
       </main>

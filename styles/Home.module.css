@@ -110,28 +110,17 @@
   height: 1em;
   margin-left: 0.5rem;
 }
-
+.logobutton{
+  width: 70%;
+  padding-top: 0.8rem;
+  padding-bottom: 0.8rem;
+}
 @media (max-width: 600px) {
   .grid {
     width: 100%;
     flex-direction: column;
   }
 }
-
-.logininput{
-  margin-top: 3px;
-  margin-bottom: 3px;
-  width: 100%;
-}
-.loginbutton{
-  margin-top: 3px;
-  margin-bottom: 3px;
-  padding-top: 0.8rem;
-  padding-bottom: 0.8rem;
-  width: 100%;
-  background-color: rgb(0, 183, 255);
-}
-
 @media (prefers-color-scheme: dark) {
   .card,
   .footer {

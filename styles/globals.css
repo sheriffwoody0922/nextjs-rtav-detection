@@ -25,3 +25,17 @@ a {
   color: darkblue;
   background-color: rgb(233, 233, 233);
 }
+
+.logininput{
+  margin-top: 3px;
+  margin-bottom: 3px;
+  width: 100%;
+}
+.loginbutton{
+  margin-top: 3px;
+  margin-bottom: 3px;
+  padding-top: 0.8rem;
+  padding-bottom: 0.8rem;
+  width: 100%;
+  background-color: rgb(0, 183, 255);
+}
