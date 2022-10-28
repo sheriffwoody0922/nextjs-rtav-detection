@@ -4,6 +4,7 @@ import CssBaseline from '@mui/material/CssBaseline';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import Toolbar from '@mui/material/Toolbar';
+import AccountBoxIcon from '@mui/icons-material/AccountBox';
 
 
 const drawerWidth = 240;
@@ -22,15 +23,22 @@ export default function Navbar(props:any){
                 }}
             >
                 <Toolbar sx={{display:"flex"}} className="admin-navbar">
-                <IconButton
-                    color="inherit"
-                    aria-label="open drawer"
-                    edge="start"
-                    onClick={props.mobilecontrol}
-                    sx={{display: { sm: 'none' }}}
-                >
-                    <MenuIcon />
-                </IconButton>
+                    <IconButton
+                        color="inherit"
+                        aria-label="open drawer"
+                        edge="start"
+                    >
+                        <AccountBoxIcon />
+                    </IconButton>
+                    <IconButton
+                        color="inherit"
+                        aria-label="open drawer"
+                        edge="start"
+                        onClick={props.mobilecontrol}
+                        sx={{display: { sm: 'none' }}}
+                    >
+                        <MenuIcon />
+                    </IconButton>
                 </Toolbar>
             </AppBar>
         </>
