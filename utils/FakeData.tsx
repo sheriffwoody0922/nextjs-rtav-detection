@@ -5,6 +5,7 @@ import {
     randomId,
   } from '@mui/x-data-grid-generator';
   
+export const formatRows: GridRowsProp= [];
 export const initialRows: GridRowsProp = [
     {
       id: randomId(),
@@ -14,8 +15,9 @@ export const initialRows: GridRowsProp = [
       gps:"41.40338, 2.17403",
       carnumber:"NW51 STY",
       owhatnumber:randomTraderName(),
-      remind:"1/1",
+      remind:"4/4",
       dateCreated: randomCreatedDate(),
+      flag:"new",
     },
     {
       id: randomId(),
@@ -25,8 +27,9 @@ export const initialRows: GridRowsProp = [
       gps:"41.40338, 2.17403",
       carnumber:"P3 FIX",
       owhatnumber:randomTraderName(),
-      remind:"1/1",
+      remind:"4/5",
       dateCreated: randomCreatedDate(),
+      flag:"check",
     },
     {
       id: randomId(),
@@ -36,8 +39,9 @@ export const initialRows: GridRowsProp = [
       gps:"41.40338, 2.17403",
       carnumber:"SUF 123X",
       owhatnumber:randomTraderName(),
-      remind:"1/1",
+      remind:"2/2",
       dateCreated: randomCreatedDate(),
+      flag:"fine",
     },
     {
       id: randomId(),
@@ -47,8 +51,9 @@ export const initialRows: GridRowsProp = [
       gps:"41.40338, 2.17403",
       carnumber:"4 REG",
       owhatnumber:randomTraderName(),
-      remind:"1/1",
+      remind:"3/3",
       dateCreated: randomCreatedDate(),
+      flag:"paid",
     },
     {
       id: randomId(),
@@ -58,7 +63,20 @@ export const initialRows: GridRowsProp = [
       gps:"41.40338, 2.17403",
       carnumber:"LCH 3712",
       owhatnumber:randomTraderName(),
-      remind:"1/1",
+      remind:"2/3",
       dateCreated: randomCreatedDate(),
+      flag:"trash",
+    },
+    {
+      id: randomId(),
+      rname: randomTraderName(),
+      fine: 44,
+      rwhatnumber:randomTraderName(),
+      gps:"41.40338, 2.17403",
+      carnumber:"PR 453",
+      owhatnumber:randomTraderName(),
+      remind:"1/2",
+      dateCreated: randomCreatedDate(),
+      flag:"cancel",
     },
   ];

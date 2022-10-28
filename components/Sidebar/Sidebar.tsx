@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useRouter } from "next/router";
 
 import Box from '@mui/material/Box';
 import Divider from '@mui/material/Divider';
@@ -26,6 +27,7 @@ interface Props {
 export default function Sidebar(props:any, data:Props){
 
     const { window } = data;
+    const router = useRouter();
 
   const drawer = (
     <div>
@@ -39,9 +41,12 @@ export default function Sidebar(props:any, data:Props){
         <Divider />
         <List>
             {group.data.map((item:any)=>
-                <ListItem key={item.key} disablePadding>
-                    <ListItemButton>
-                        <ListItemIcon>
+                <ListItem 
+                    key={item.key} 
+                    disablePadding                       
+                    className={(router.query.flag !== item.key ? "opacity-75" : "selected")}>
+                    <ListItemButton onClick={()=>router.push("/admin/dashboard/"+item.key)}>
+                        <ListItemIcon sx={{color:"inherit"}}>
                             {item.icon}
                         </ListItemIcon>
                         <ListItemText primary={item.name} />

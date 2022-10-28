@@ -12,7 +12,7 @@ export default function Dashboard(){
 
     return(
         <Admin>
-            <ReportDataGrid />
+            <ReportDataGrid filterkey={flag}/>
         </Admin>
     )
 }

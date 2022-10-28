@@ -26,7 +26,7 @@ import {
   randomId,
 } from '@mui/x-data-grid-generator';
 
-import { initialRows } from '../../utils/FakeData';
+import { formatRows, initialRows } from '../../utils/FakeData';
 
 interface EditToolbarProps {
   setRows: (newRows: (oldRows: GridRowsProp) => GridRowsProp) => void;
@@ -57,10 +57,15 @@ function EditToolbar(props: EditToolbarProps) {
 }
 
 export default function ReportDataGrid(props:any) {
-  
-  const{category} = props;
-  const [rows, setRows] = React.useState(initialRows);
+
+  const{filterkey} = props;
+  const [rows, setRows] = React.useState(formatRows);
   const [rowModesModel, setRowModesModel] = React.useState<GridRowModesModel>({});
+
+  React.useEffect(()=>{
+    const filtereddata = (filterkey==="all"?initialRows:initialRows.filter((item:any)=>item.flag==filterkey));
+    setRows(filtereddata);
+  },[filterkey]);
 
   const handleRowEditStart = (
     params: GridRowParams,
@@ -127,7 +132,7 @@ export default function ReportDataGrid(props:any) {
     },
     { field: 'carnumber', headerName: 'Car Number', width:130, editable: true },
     { field: 'owhatnumber', headerName: 'Owner WhatsApp', width:150, editable: true },
-    { field: 'fine', headerName: 'Fine', type:'number', width:50, editable: true },
+    { field: 'fine', headerName: 'Fine', type:'number', width:70, editable: true },
     {
       field: 'video',
       type: 'actions',

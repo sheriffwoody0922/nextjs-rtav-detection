@@ -21,12 +21,7 @@ a {
 .admin-navbar{
   justify-content: end;
 }
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
-  body {
-    color: black;
-    background: #fff;
-  }
+.selected{
+  color: darkblue;
+  background-color: rgb(233, 233, 233);
 }
