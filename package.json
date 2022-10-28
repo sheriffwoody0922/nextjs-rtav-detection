@@ -1,11 +1,11 @@
 {
-  "name": "rtav-detectionsystem",
+  "name": "mujiba",
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "node server.js",
     "build": "next build",
-    "start": "next start",
+    "start": "NODE_ENV=production node server.js",
     "lint": "next lint"
   },
   "dependencies": {
@@ -15,6 +15,12 @@
     "@mui/material": "^5.10.11",
     "@mui/x-data-grid": "^5.17.8",
     "@mui/x-data-grid-generator": "^5.17.8",
+    "axios": "^1.1.3",
+    "bcryptjs": "^2.4.3",
+    "express": "^4.18.2",
+    "jsonwebtoken": "^8.5.1",
+    "lodash": "^4.17.21",
+    "mongoose": "^6.7.0",
     "next": "13.0.0",
     "prop-types": "^15.8.1",
     "react": "18.2.0",
