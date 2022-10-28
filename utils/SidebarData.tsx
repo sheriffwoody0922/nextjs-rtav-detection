@@ -12,18 +12,22 @@ export const sidebardata:any[] = [
             key:"main",
             data:[
                 {
+                    id:1,
                     key:"new",
                     name:"New Incident",
                     icon:<FiberNewIcon />
                 },{
+                    id:2,
                     key:"check",
                     name:"Checked",
                     icon:<CheckBoxIcon />
                 },{
+                    id:3,
                     key:"fine",
                     name:"Fined",
                     icon:<PaidIcon />
                 },{
+                    id:4,
                     key:"paid",
                     name:"Paid",
                     icon:<VerifiedIcon/>
@@ -34,15 +38,18 @@ export const sidebardata:any[] = [
             key:"add",
             data:[
                 {
+                    id:5,
                     key:"all",
                     name:"All Incident",
                     icon:<ReportIcon />
                 },
                 {
+                    id:6,
                     key:"trash",
                     name:"Trash",
                     icon:<DeleteForeverIcon/>
                 },{
+                    id:7,
                     key:"cancel",
                     name:"Canceled",
                     icon:<DoNotDisturbOnIcon/>

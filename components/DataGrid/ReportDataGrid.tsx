@@ -56,7 +56,9 @@ function EditToolbar(props: EditToolbarProps) {
   );
 }
 
-export default function ReportDataGrid() {
+export default function ReportDataGrid(props:any) {
+  
+  const{category} = props;
   const [rows, setRows] = React.useState(initialRows);
   const [rowModesModel, setRowModesModel] = React.useState<GridRowModesModel>({});
 
