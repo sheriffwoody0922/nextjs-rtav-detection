@@ -1,6 +1,9 @@
 import React from "react";
 import {useRouter} from "next/router";
 import Link from "next/link";
+import axios from "axios";
+import { ToastContainer,toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 
 import Auth from "../../layouts/Auth";
@@ -15,7 +18,30 @@ import InputIcon from '@mui/icons-material/Input';
 export default function Login(){
 
     const router = useRouter()
-    const { flag } = router.query
+
+    const [user, setUser] = React.useState({
+        email: "",
+        password: "",
+      });
+      const [errors, setErrors] = React.useState({});
+      const [fetching, setFetching] = React.useState(false);
+    
+    const handleSubmit = (e:React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+        e.preventDefault();
+        setFetching(true);
+        axios
+          .post("/api/auth/login", user)
+          .then((res) => {
+            toast.success("Login Successfule");
+            router.push("/admin");
+          })
+          .catch((err) => {
+            toast.error("Unable to Login Try Again");
+          })
+          .finally(() => {
+            setFetching(false);
+          });
+      };
 
     return(
         <Auth>
@@ -28,9 +54,31 @@ export default function Login(){
             noValidate
             autoComplete="off"
             >
-            <TextField className="logininput" id="user-email" label="Email"  variant="filled" />
-            <TextField className="logininput" id="user-password" label="Password" type="password" variant="filled" />
-            <Button className="loginbutton" onClick={()=>router.push('/admin/dashboard/all')} variant="contained" endIcon={<InputIcon />}>
+            <TextField 
+                className="logininput" 
+                id="user-email" 
+                label="Email"  
+                variant="filled"
+                disabled={fetching} 
+                value={user.email}
+                onChange={(e) => {setUser({ ...user, email: e.target.value })}} 
+            />
+            <TextField 
+                className="logininput" 
+                id="user-password" 
+                label="Password" 
+                type="password" 
+                variant="filled"
+                disabled={fetching} 
+                value={user.password}
+                onChange={(e) => {setUser({ ...user, password: e.target.value })}} 
+            />
+            <Button 
+                className="loginbutton" 
+                onClick={(e)=>handleSubmit(e)} 
+                variant="contained" 
+                endIcon={<InputIcon />}
+                disabled={fetching}>
                 Login 
             </Button>
             <p className="text-white">
@@ -40,6 +88,7 @@ export default function Login(){
                 </Link>
             </p>
             </Box>
+            <ToastContainer />
         </Auth>
     )
 }
