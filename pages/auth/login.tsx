@@ -33,7 +33,7 @@ export default function Login(){
           .post("/api/auth/login", user)
           .then((res) => {
             toast.success("Login Successfule");
-            router.push("/admin");
+            router.push("/admin/dashboard/all");
           })
           .catch((err) => {
             toast.error("Unable to Login Try Again");

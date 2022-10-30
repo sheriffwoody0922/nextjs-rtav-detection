@@ -33,7 +33,7 @@ export default function Register(){
         .catch((err) => {
           console.log(err);
           if (err.response) {
-            toast.error("Error");
+            toast.error(err.response.data);
           } else toast.error("Somathing Bad Happened");
         })
         .finally(() => {
