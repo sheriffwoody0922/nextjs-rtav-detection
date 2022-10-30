@@ -1,7 +1,5 @@
 import mongoose from "mongoose";
 var Schema = mongoose.Schema;
-import User from "./user";
-
 
 var reportSchema = new Schema(
     {

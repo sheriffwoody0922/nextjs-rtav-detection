@@ -26,7 +26,6 @@ import {
   randomId,
 } from '@mui/x-data-grid-generator';
 
-import { formatRows, initialRows } from '../../utils/FakeData';
 
 interface EditToolbarProps {
   setRows: (newRows: (oldRows: GridRowsProp) => GridRowsProp) => void;
@@ -56,6 +55,8 @@ function EditToolbar(props: EditToolbarProps) {
   );
 }
 
+const formatRows: GridRowsProp= [];
+
 export default function ReportDataGrid(props:any) {
 
   const{filterkey} = props;
@@ -63,9 +64,10 @@ export default function ReportDataGrid(props:any) {
   const [rowModesModel, setRowModesModel] = React.useState<GridRowModesModel>({});
 
   React.useEffect(()=>{
-    const filtereddata = (filterkey==="all"?initialRows:initialRows.filter((item:any)=>item.flag==filterkey));
-    setRows(filtereddata);
-  },[filterkey]);
+    const griddata:GridRowsProp = props.data;
+    console.log(griddata);
+    setRows(griddata);
+  },[props]);
 
   const handleRowEditStart = (
     params: GridRowParams,
