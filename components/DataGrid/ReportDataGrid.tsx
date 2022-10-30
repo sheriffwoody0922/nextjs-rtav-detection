@@ -1,5 +1,11 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogTitle from '@mui/material/DialogTitle';
+import useMediaQuery from '@mui/material/useMediaQuery';
+import { useTheme } from '@mui/material/styles';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import AddIcon from '@mui/icons-material/Add';
@@ -26,6 +32,7 @@ import {
 import {
   randomId,
 } from '@mui/x-data-grid-generator';
+import ReactPlayer from 'react-player';
 
 
 interface EditToolbarProps {
@@ -60,7 +67,18 @@ const formatRows: GridRowsProp= [];
 
 export default function ReportDataGrid(props:any) {
 
-  const{filterkey} = props;
+  const [open, setOpen] = React.useState(false);
+  const[videopath, setVideopath] = React.useState("");
+
+    const handleClickOpen = (value:string) => {
+    setOpen(true);
+    setVideopath(value);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
   const [rows, setRows] = React.useState(formatRows);
   const [rowModesModel, setRowModesModel] = React.useState<GridRowModesModel>({});
 
@@ -168,13 +186,13 @@ export default function ReportDataGrid(props:any) {
       headerName: '',
       width: 50,
       cellClassName: 'actions',
-      getActions: ({ id }) => {
+      getActions: (params:any) => {
         return [
           <GridActionsCellItem
             icon={<PlayCircleFilledWhiteOutlinedIcon />}
             label="Edit"
             className="textPrimary"
-            onClick={handleEditClick(id)}
+            onClick={() => handleClickOpen(params.row.reportvideo)}
             color="inherit"
           />
         ];  
@@ -273,6 +291,34 @@ export default function ReportDataGrid(props:any) {
         }}
         experimentalFeatures={{ newEditingApi: true }}
       />
+      <div>
+        <VideoModal close={handleClose} isshow={open} path={videopath}></VideoModal>
+      </div>
     </Box>
   );
+}
+
+const VideoModal = (props:any) => {
+
+  const theme = useTheme();
+  const fullScreen = useMediaQuery(theme.breakpoints.down('md'));
+
+  return(
+    <Dialog
+    fullScreen={fullScreen}
+    open={props.isshow}
+    onClose={props.close}
+    aria-labelledby="responsive-dialog-title"
+    >
+      <DialogTitle id="responsive-dialog-title">
+        {"Use Google's location service?"}
+      </DialogTitle>
+      <DialogContent>
+        <video controls width="50%" style={{width:"inherit"}}>
+          <source src={props.path} type="video/mp4"/>
+          Sorry, your browser doesn't support videos.
+        </video>
+      </DialogContent>
+    </Dialog>
+  )
 }
