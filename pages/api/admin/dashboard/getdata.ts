@@ -11,7 +11,6 @@ const handler = async function handler(req:any, res:any) {
             return res.status(200).send(reports);
         }
         let reports = await Report.find({reportflag:req.body.flag,}).populate({ path: 'reportowner', select:'name whatsapp reportlimit'});
-        console.log(reports);
         return res.status(200).send(reports)
     }
     return res.status(404).send("Error")

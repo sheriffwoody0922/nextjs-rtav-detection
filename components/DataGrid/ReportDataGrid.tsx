@@ -1,11 +1,8 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import Dialog from '@mui/material/Dialog';
-import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
-import useMediaQuery from '@mui/material/useMediaQuery';
-import { useTheme } from '@mui/material/styles';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import AddIcon from '@mui/icons-material/Add';
@@ -300,18 +297,14 @@ export default function ReportDataGrid(props:any) {
 
 const VideoModal = (props:any) => {
 
-  const theme = useTheme();
-  const fullScreen = useMediaQuery(theme.breakpoints.down('md'));
-
   return(
     <Dialog
-    fullScreen={fullScreen}
     open={props.isshow}
     onClose={props.close}
     aria-labelledby="responsive-dialog-title"
     >
       <DialogTitle id="responsive-dialog-title">
-        {"Use Google's location service?"}
+        {"Reported Video"}
       </DialogTitle>
       <DialogContent>
         <video controls width="50%" style={{width:"inherit"}}>
