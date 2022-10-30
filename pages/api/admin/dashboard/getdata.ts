@@ -10,7 +10,7 @@ const handler = async function handler(req:any, res:any) {
             let reports = await Report.find({}).populate({ path: 'reportowner', select:'name whatsapp reportlimit'});
             return res.status(200).send(reports);
         }
-        let reports = await Report.find({reportflag:req.body.flag,});
+        let reports = await Report.find({reportflag:req.body.flag,}).populate({ path: 'reportowner', select:'name whatsapp reportlimit'});
         console.log(reports);
         return res.status(200).send(reports)
     }

@@ -7,7 +7,8 @@ import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/DeleteOutlined';
 import SaveIcon from '@mui/icons-material/Save';
 import CancelIcon from '@mui/icons-material/Close';
-import PlayCircleIcon from '@mui/icons-material/PlayCircle';
+import PlayCircleFilledWhiteOutlinedIcon from '@mui/icons-material/PlayCircleFilledWhiteOutlined';
+import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 import {
   GridRowsProp,
   DataGrid,
@@ -89,7 +90,7 @@ export default function ReportDataGrid(props:any) {
   };
 
   const handleDeleteClick = (id: GridRowId) => () => {
-    setRows(rows.filter((row) => row.id !== id));
+    setRows(rows.filter((row) => row._id !== id));
   };
 
   const handleCancelClick = (id: GridRowId) => () => {
@@ -98,43 +99,69 @@ export default function ReportDataGrid(props:any) {
       [id]: { mode: GridRowModes.View, ignoreModifications: true },
     });
 
-    const editedRow = rows.find((row) => row.id === id);
+    const editedRow = rows.find((row) => row._id === id);
     if (editedRow!.isNew) {
-      setRows(rows.filter((row) => row.id !== id));
+      setRows(rows.filter((row) => row._id !== id));
     }
   };
 
   const processRowUpdate = (newRow: GridRowModel) => {
     const updatedRow = { ...newRow, isNew: false };
-    setRows(rows.map((row) => (row.id === newRow.id ? updatedRow : row)));
+    setRows(rows.map((row) => (row._id === newRow._id ? updatedRow : row)));
     return updatedRow;
   };
 
   const columns: GridColumns = [
-    { field: 'rname', headerName: 'Name', width: 150, editable: false },
-    { field: 'rwhatnumber', headerName: 'Reporter WhatsApp', width:150, editable: false },
-    { field: 'remind', headerName: 'Remind', width:80, editable: false },
-    { 
-      field: 'gps', 
-      headerName: 'GPS', 
-      width:110, 
+    { field: '_id', headerName: '_id', width: 0, editable: false, hide: true },
+    { field: 'rname', 
+      headerName: 'Name', 
+      width: 150, 
       editable: false,
       renderCell: (params:any) =>  (
-        <Tooltip title={params.row.gps} >
-          <span className="table-cell-trucate">{params.row.gps}</span>
+        <Tooltip title={params.row.reportowner.name}>
+          <span className="table-cell-trucate">{params.row.reportowner.name}</span>
+        </Tooltip>
+      ),
+     },
+    { 
+      field: 'rwhatnumber', 
+      headerName: 'Reporter 📱', 
+      width:120,
+      editable: false,
+      sortable: false,
+      renderCell: (params:any) =>  (
+        <Tooltip title={params.row.reportowner.whatsapp}>
+          <span className="table-cell-trucate">{params.row.reportowner.whatsapp}</span>
+        </Tooltip>
+      ),
+     },
+    { 
+      field: 'remind', 
+      headerName: 'Remind', 
+      width:80, 
+      editable: false },
+    { 
+      field: 'reportgps', 
+      headerName: 'GPS', 
+      width:100, 
+      editable: false,
+      sortable: false,
+      renderCell: (params:any) =>  (
+        <Tooltip title={params.row.reportgps} >
+          <span className="table-cell-trucate">{params.row.reportgps}</span>
         </Tooltip>
        ), 
     },
     {
-      field: 'dateCreated',
+      field: 'reportdate',
       headerName: 'Date',
       type: 'date',
       width: 100,
       editable: false,
     },
-    { field: 'carnumber', headerName: 'Car Number', width:130, editable: true },
-    { field: 'owhatnumber', headerName: 'Owner WhatsApp', width:150, editable: true },
-    { field: 'fine', headerName: 'Fine', type:'number', width:70, editable: true },
+    { field: 'reportedcar', headerName: 'Car Number', width:130, editable: true },
+    { field: 'owhatnumber', headerName: 'Owner 📱', sortable: false, width:120, editable: true },
+    { field: 'reportfine', headerName: 'Fine', type:'number', width:70, editable: true },
     {
       field: 'video',
       type: 'actions',
@@ -144,7 +171,7 @@ export default function ReportDataGrid(props:any) {
       getActions: ({ id }) => {
         return [
           <GridActionsCellItem
-            icon={<PlayCircleIcon />}
+            icon={<PlayCircleFilledWhiteOutlinedIcon />}
             label="Edit"
             className="textPrimary"
             onClick={handleEditClick(id)}
@@ -195,6 +222,23 @@ export default function ReportDataGrid(props:any) {
           />,
         ];
       },
+    },{
+      field: 'check',
+      type: 'actions',
+      headerName: '',
+      width: 50,
+      cellClassName: 'actions',
+      getActions: ({ id }) => {
+        return [
+          <GridActionsCellItem
+            icon={<CheckCircleOutlineIcon />}
+            label="Check"
+            className="textPrimary"
+            onClick={handleEditClick(id)}
+            color="inherit"
+          />
+        ];  
+      },
     },
   ];
 
@@ -214,6 +258,7 @@ export default function ReportDataGrid(props:any) {
       <DataGrid
         rows={rows}
         columns={columns}
+        getRowId={(row: any) =>  row._id}
         editMode="row"
         rowModesModel={rowModesModel}
         onRowModesModelChange={(newModel:any) => setRowModesModel(newModel)}
