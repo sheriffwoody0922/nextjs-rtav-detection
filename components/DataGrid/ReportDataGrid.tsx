@@ -88,6 +88,7 @@ export default function ReportDataGrid(props:any) {
 
   const [rows, setRows] = React.useState(formatRows);
   const [rowModesModel, setRowModesModel] = React.useState<GridRowModesModel>({});
+  const [pageSize, setPageSize] = React.useState<number>(10);
 
   React.useEffect(()=>{
     const griddata:GridRowsProp = props.data;
@@ -144,9 +145,10 @@ export default function ReportDataGrid(props:any) {
   const columns: GridColumns = [
     { field: '_id', headerName: '_id', width: 0, editable: false, hide: true },
     { field: 'rname', 
-      headerName: '👥', 
+      headerName: '👥 Name', 
       width: 150, 
       editable: false,
+      sortable: false,
       renderCell: (params:any) =>  (
         <Tooltip title={params.row.reportowner.name}>
           <span className="table-cell-trucate">{params.row.reportowner.name}</span>
@@ -309,6 +311,10 @@ export default function ReportDataGrid(props:any) {
           toolbar: { setRows, setRowModesModel },
         }}
         getRowClassName={(params) => `super-app-theme--${params.row.reportflag}`}
+        pageSize={pageSize}
+        onPageSizeChange={(newPageSize) => setPageSize(newPageSize)}
+        rowsPerPageOptions={[10, 15, 25]}
+        pagination
         experimentalFeatures={{ newEditingApi: true }}
       />
       <div>
