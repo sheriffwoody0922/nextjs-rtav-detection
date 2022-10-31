@@ -12,6 +12,7 @@ import ListItemText from '@mui/material/ListItemText';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import {sidebardata} from '../../utils/SidebarData';
+import Link from 'next/link';
 
 
 const drawerWidth = 240;
@@ -33,7 +34,7 @@ export default function Sidebar(props:any, data:Props){
     <div>
       <Toolbar>
         <Typography variant="h4" noWrap component="div" sx={{fontWeight:800}}>
-            Mujiba
+            <Link href="/">Mujiba</Link>
         </Typography>
       </Toolbar>
       {sidebardata.map((group:any)=>

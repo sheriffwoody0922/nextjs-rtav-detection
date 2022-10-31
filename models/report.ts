@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 var Schema = mongoose.Schema;
-
+const User = require("./user");
 var reportSchema = new Schema(
     {
       reportowner: {

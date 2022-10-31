@@ -4,10 +4,11 @@ import axios from "axios";
 
 import Admin from "../../../layouts/Admin";
 import ReportDataGrid from "../../../components/DataGrid/ReportDataGrid";
+import sessionProps from "../../../next-middlewares/sessionProps";
 
 
 
-export default function Dashboard(){
+export default function Dashboard(props:any){
 
     const [data, setData] = useState([])
     const router = useRouter()
@@ -29,8 +30,14 @@ export default function Dashboard(){
     },[flag])
 
     return(
-        <Admin>
+        <Admin layoutData={props.layoutData}>
             <ReportDataGrid filterkey={flag} data={data}/>
         </Admin>
     )
 }
+
+export const getServerSideProps = async function (context:any) {
+    let layoutData = await sessionProps(context);
+  
+    return { props: { layoutData } };
+};

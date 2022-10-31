@@ -37,7 +37,7 @@ const handler = async function handler(req:any, res:any) {
     //     });
     // });
     
-    // fake reports made
+    //fake reports made
     // User.count().exec(function (err, count) {
 
     //     for(let i = 0; i < 15; i++){
@@ -55,6 +55,7 @@ const handler = async function handler(req:any, res:any) {
     //                 reportdate:new Date(),
     //                 reportedcar:`${faker.vehicle.manufacturer()} ${faker.vehicle.model()}`,
     //                 reportfine:10,
+    //                 sendedwhatsapp:"",
     //                 reportflag:"new"
     //             });
     //             report.save();
