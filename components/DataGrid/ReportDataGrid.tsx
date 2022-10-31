@@ -42,22 +42,14 @@ interface EditToolbarProps {
 }
 
 function EditToolbar(props: EditToolbarProps) {
-  const { setRows, setRowModesModel } = props;
-
-  const handleClick = () => {
-    const id = randomId();
-    setRows((oldRows) => [...oldRows, { id, name: '', age: '', isNew: true }]);
-    setRowModesModel((oldModel) => ({
-      ...oldModel,
-      [id]: { mode: GridRowModes.Edit, fieldToFocus: 'name' },
-    }));
-  };
 
   return (
     <GridToolbarContainer>
-      <Button color="primary" startIcon={<AddIcon />} onClick={handleClick}>
-        Add record
-      </Button>
+      <div className='flex'>
+        {datastatus.map((item:any) =>
+          <span className={`super-app-theme--${item.current} p-1 m-1 border-solid border-gray border-2`} key={item.current}>{item.current}</span>)
+        }
+      </div>
     </GridToolbarContainer>
   );
 }
@@ -174,9 +166,10 @@ export default function ReportDataGrid(props:any) {
      },
     { 
       field: 'reportnumber', 
-      headerName: 'Remind', 
+      headerName: 'No 🔢', 
       width:80, 
       editable: false,
+      sortable: false,
       renderCell: (params:any) =>  (
         <Tooltip title={`Limit: ${params.row.reportowner.reportlimit}`}>
           <span className="table-cell-trucate">{params.row.reportowner.reportnumber}</span>

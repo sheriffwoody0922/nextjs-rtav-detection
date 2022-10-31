@@ -51,3 +51,9 @@ a {
 .super-app-theme--paid{
   background-color:rgb(200, 142, 255);
 }
+.super-app-theme--cancel{
+  background-color:rgb(255, 126, 126);
+}
+.super-app-theme--trash{
+  background-color:rgb(160, 160, 160);
+}
