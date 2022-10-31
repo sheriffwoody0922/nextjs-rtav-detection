@@ -151,7 +151,7 @@ export default function ReportDataGrid(props:any) {
   const columns: GridColumns = [
     { field: '_id', headerName: '_id', width: 0, editable: false, hide: true },
     { field: 'rname', 
-      headerName: 'Name', 
+      headerName: '👥', 
       width: 150, 
       editable: false,
       renderCell: (params:any) =>  (
@@ -179,7 +179,7 @@ export default function ReportDataGrid(props:any) {
       editable: false },
     { 
       field: 'reportgps', 
-      headerName: 'GPS', 
+      headerName: 'GPS 🌍', 
       width:100, 
       editable: false,
       sortable: false,
@@ -198,18 +198,18 @@ export default function ReportDataGrid(props:any) {
     },
     { field: 'reportedcar', headerName: 'Car Number', width:130, editable: true },
     { field: 'sendedwhatsapp', headerName: 'Owner 📱', sortable: false, width:120, editable: true },
-    { field: 'reportfine', headerName: 'Fine', type:'number', width:70, editable: true },
+    { field: 'reportfine', headerName: '💲', type:'number', width:70, editable: true },
     {
       field: 'video',
       type: 'actions',
-      headerName: '',
+      headerName: '🎬',
       width: 50,
       cellClassName: 'actions',
       getActions: (params:any) => {
         return [
           <GridActionsCellItem
             icon={<PlayCircleFilledWhiteOutlinedIcon />}
-            label="Edit"
+            label="Video View"
             className="textPrimary"
             onClick={() => handleClickOpen(params.row.reportvideo)}
             color="inherit"
@@ -262,7 +262,7 @@ export default function ReportDataGrid(props:any) {
     },{
       field: 'check',
       type: 'actions',
-      headerName: '',
+      headerName: '✅',
       width: 50,
       cellClassName: 'actions',
       getActions: ({ id }) => {
