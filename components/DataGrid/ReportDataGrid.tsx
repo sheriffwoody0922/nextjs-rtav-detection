@@ -69,8 +69,10 @@ export default function ReportDataGrid(props:any) {
   const updatedata = (method:string,data:any) => {
     console.log(method, data);
     let flag = data.reportflag;
-    if(method==="status"){
+    if(method==="upgrade"){
       flag = datastatus.filter((item:any)=>item.current == flag)[0].upgrade;
+    }else if(method==="cancel"){
+      flag = datastatus.filter((item:any)=>item.current == flag)[0].cancel;
     }
     const changeddata = {
       _id:data._id,
@@ -114,11 +116,12 @@ export default function ReportDataGrid(props:any) {
   };
 
   const handleDeleteClick = (id: GridRowId) => () => {
-    setRows(rows.filter((row) => row._id !== id));
+    // setRows(rows.filter((row) => row._id !== id));
+    updatedata("cancel", rows.filter((item:any)=>item._id == id)[0]);
   };
 
   const handlestatusClick = (id: any) => () => {
-    updatedata("status", rows.filter((item:any)=>item._id == id)[0]);
+    updatedata("upgrade", rows.filter((item:any)=>item._id == id)[0]);
   };
 
   const handleCancelClick = (id: GridRowId) => () => {
