@@ -2,8 +2,7 @@ import React from "react";
 import {useRouter} from "next/router";
 import Link from "next/link";
 import axios from "axios";
-import { ToastContainer,toast } from "react-toastify";
-import 'react-toastify/dist/ReactToastify.css';
+import {toast } from "react-toastify";
 
 
 import Auth from "../../layouts/Auth";
@@ -88,7 +87,6 @@ export default function Login(){
                 </Link>
             </p>
             </Box>
-            <ToastContainer />
         </Auth>
     )
 }
