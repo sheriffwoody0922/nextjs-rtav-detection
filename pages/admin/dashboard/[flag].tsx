@@ -17,21 +17,36 @@ export default function Dashboard(props:any){
     useEffect(()=>{
         console.log(`This is ${flag}`);
         if(flag){
-            axios
-            .post("/api/admin/dashboard/getdata", {flag:flag})
+            getdata();
+        }
+    },[flag])
+
+    const getdata = () => {
+        axios
+        .post("/api/admin/dashboard/getdata", {flag:flag})
+        .then((res:any) => {
+            setData(res.data);
+        })
+        .catch((err) => {
+        })
+        .finally(() => {
+        });
+    }
+    const updatedata = (data:any) => {
+        axios
+            .post("/api/admin/dashboard/setdata", data)
             .then((res:any) => {
-                setData(res.data);
+                getdata();
             })
             .catch((err) => {
             })
             .finally(() => {
-            });
-        }
-    },[flag])
+        });
+    }
 
     return(
         <Admin layoutData={props.layoutData}>
-            <ReportDataGrid filterkey={flag} data={data}/>
+            <ReportDataGrid filterkey={flag} data={data} updateData={updatedata}/>
         </Admin>
     )
 }

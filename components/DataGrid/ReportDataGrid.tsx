@@ -29,7 +29,9 @@ import {
 import {
   randomId,
 } from '@mui/x-data-grid-generator';
-import ReactPlayer from 'react-player';
+
+import {datastatus} from '../../utils/SidebarData';
+
 
 
 interface EditToolbarProps {
@@ -67,10 +69,26 @@ export default function ReportDataGrid(props:any) {
   const [open, setOpen] = React.useState(false);
   const[videopath, setVideopath] = React.useState("");
 
-    const handleClickOpen = (value:string) => {
+  const handleClickOpen = (value:string) => {
     setOpen(true);
     setVideopath(value);
   };
+
+  const updatedata = (method:string,data:any) => {
+    console.log(method, data);
+    let flag = data.reportflag;
+    if(method==="status"){
+      flag = datastatus.filter((item:any)=>item.current == flag)[0].upgrade;
+    }
+    const changeddata = {
+      _id:data._id,
+      fine:data.reportfine,
+      whatsapp:data.sendedwhatsapp,
+      car:data.reportedcar,
+      flag:flag
+    }
+    props.updateData(changeddata);
+  } 
 
   const handleClose = () => {
     setOpen(false);
@@ -81,7 +99,6 @@ export default function ReportDataGrid(props:any) {
 
   React.useEffect(()=>{
     const griddata:GridRowsProp = props.data;
-    console.log(griddata);
     setRows(griddata);
   },[props]);
 
@@ -108,6 +125,10 @@ export default function ReportDataGrid(props:any) {
     setRows(rows.filter((row) => row._id !== id));
   };
 
+  const handlestatusClick = (id: any) => () => {
+    updatedata("status", rows.filter((item:any)=>item._id == id)[0]);
+  };
+
   const handleCancelClick = (id: GridRowId) => () => {
     setRowModesModel({
       ...rowModesModel,
@@ -122,7 +143,8 @@ export default function ReportDataGrid(props:any) {
 
   const processRowUpdate = (newRow: GridRowModel) => {
     const updatedRow = { ...newRow, isNew: false };
-    setRows(rows.map((row) => (row._id === newRow._id ? updatedRow : row)));
+    updatedata("data", updatedRow);
+    // setRows(rows.map((row) => (row._id === newRow._id ? updatedRow : row)));
     return updatedRow;
   };
 
@@ -175,7 +197,7 @@ export default function ReportDataGrid(props:any) {
       editable: false,
     },
     { field: 'reportedcar', headerName: 'Car Number', width:130, editable: true },
-    { field: 'owhatnumber', headerName: 'Owner 📱', sortable: false, width:120, editable: true },
+    { field: 'sendedwhatsapp', headerName: 'Owner 📱', sortable: false, width:120, editable: true },
     { field: 'reportfine', headerName: 'Fine', type:'number', width:70, editable: true },
     {
       field: 'video',
@@ -249,7 +271,7 @@ export default function ReportDataGrid(props:any) {
             icon={<CheckCircleOutlineIcon />}
             label="Check"
             className="textPrimary"
-            onClick={handleEditClick(id)}
+            onClick={handlestatusClick(id)}
             color="inherit"
           />
         ];  

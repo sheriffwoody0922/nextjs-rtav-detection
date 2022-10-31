@@ -57,3 +57,29 @@ export const sidebardata:any[] = [
             ]
         }
 ]
+
+export const datastatus:any[] = [
+    {
+        current:"new",
+        upgrade:"check",
+        cancel:"cancel"
+    },
+    {
+        current:"check",
+        upgrade:"fine",
+        cancel:"cancel"
+    },
+    {
+        current:"fine",
+        upgrade:"paid",
+        cancel:"cancel"
+    },{
+        current:"fine",
+        upgrade:"paid",
+        cancel:"cancel"
+    },{
+        current:"cancel",
+        upgrade:"trash",
+        cancel:"trash",
+    }
+]
