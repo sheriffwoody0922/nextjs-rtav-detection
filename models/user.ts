@@ -14,6 +14,9 @@ var userSchema = new Schema(
     reportlimit:{
       type:Number,
     },
+    reportnumber:{
+      type:Number,
+    },
     whatsapp:{
         type: String,
     },

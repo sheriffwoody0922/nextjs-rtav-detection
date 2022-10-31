@@ -23,7 +23,7 @@ const handler = async function handler(req:any, res:any) {
 
     // for(let i = 0; i < 10; i++)
     // {
-    //   user = new User({name:faker.name.fullName(), email:faker.internet.email(), password:temppassword, whatsapp: faker.address.zipCode(), reportlimit:5 });
+    //   user = new User({name:faker.name.fullName(), email:faker.internet.email(), password:temppassword, whatsapp: faker.address.zipCode(), reportlimit:5, reportnumber:0, });
     //   await user.save();
     // }
     

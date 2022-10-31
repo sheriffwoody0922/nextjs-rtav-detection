@@ -173,10 +173,16 @@ export default function ReportDataGrid(props:any) {
       ),
      },
     { 
-      field: 'remind', 
+      field: 'reportnumber', 
       headerName: 'Remind', 
       width:80, 
-      editable: false },
+      editable: false,
+      renderCell: (params:any) =>  (
+        <Tooltip title={`Limit: ${params.row.reportowner.reportlimit}`}>
+          <span className="table-cell-trucate">{params.row.reportowner.reportnumber}</span>
+        </Tooltip>
+      ),
+     },
     { 
       field: 'reportgps', 
       headerName: 'GPS 🌍', 
@@ -281,7 +287,7 @@ export default function ReportDataGrid(props:any) {
 
   return (
     <Box
-      sx={{
+        sx={{
         height: 500,
         width: '100%',
         '& .actions': {
@@ -308,6 +314,7 @@ export default function ReportDataGrid(props:any) {
         componentsProps={{
           toolbar: { setRows, setRowModesModel },
         }}
+        getRowClassName={(params) => `super-app-theme--${params.row.reportflag}`}
         experimentalFeatures={{ newEditingApi: true }}
       />
       <div>
