@@ -64,7 +64,21 @@ const handler = async function handler(req:any, res:any) {
     //         })
     //       }
     // })
-    
+
+    // let allusers = await User.find({});
+
+    // allusers.map((item:any)=>{
+    //   let id = item._id;
+    //   // console.log(id);
+    //   User.findByIdAndUpdate(id,{address:faker.address.streetAddress()},function (err, docs) {
+    //     if (err){
+    //         console.log(err)
+    //     }
+    //     else{
+    //         console.log("Updated User : ", docs);
+    //     }
+    // });
+    // });
 
     return res.status(200).send("Login");
   }
