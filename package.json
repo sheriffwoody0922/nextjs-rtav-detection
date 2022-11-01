@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "node server.js",
     "build": "next build",
-    "start": "NODE_ENV=production node server.js",
+    "start": "set NODE_ENV=production&&node server.js",
+    "clean": "rimraf node_modules/.cache .next",
     "lint": "next lint"
   },
   "dependencies": {

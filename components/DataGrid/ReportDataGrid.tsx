@@ -207,6 +207,7 @@ export default function ReportDataGrid(props:any) {
       getActions: (params:any) => {
         return [
           <GridActionsCellItem
+            key={params.row.reportvideo}
             icon={<PlayCircleFilledWhiteOutlinedIcon />}
             label="Video View"
             className="textPrimary"
@@ -228,11 +229,13 @@ export default function ReportDataGrid(props:any) {
         if (isInEditMode) {
           return [
             <GridActionsCellItem
+              key={`${id}-save`}
               icon={<SaveIcon />}
               label="Save"
               onClick={handleSaveClick(id)}
             />,
             <GridActionsCellItem
+              key={`${id}-cancel`}
               icon={<CancelIcon />}
               label="Cancel"
               className="textPrimary"
@@ -244,6 +247,7 @@ export default function ReportDataGrid(props:any) {
 
         return [
           <GridActionsCellItem
+            key={`${id}-edit`}
             icon={<EditIcon />}
             label="Edit"
             className="textPrimary"
@@ -251,6 +255,7 @@ export default function ReportDataGrid(props:any) {
             color="inherit"
           />,
           <GridActionsCellItem
+            key={`${id}-delete`}
             icon={<DeleteIcon />}
             label="Delete"
             onClick={handleDeleteClick(id)}
@@ -267,6 +272,7 @@ export default function ReportDataGrid(props:any) {
       getActions: ({ id }) => {
         return [
           <GridActionsCellItem
+            key={`${id}-check`}
             icon={<CheckCircleOutlineIcon />}
             label="Check"
             className="textPrimary"
@@ -335,7 +341,7 @@ const VideoModal = (props:any) => {
       <DialogContent>
         <video controls width="50%" style={{width:"inherit"}}>
           <source src={props.path} type="video/mp4"/>
-          Sorry, your browser doesn't support videos.
+            <h5>{`Sorry, Your browser doesn't support videos.`}</h5>
         </video>
       </DialogContent>
     </Dialog>
