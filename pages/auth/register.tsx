@@ -32,7 +32,7 @@ export default function Register(){
         .catch((err) => {
           console.log(err);
           if (err.response) {
-            toast.error(err.response.data);
+            toast.error("Please correctly input your basical information");
           } else toast.error("Somathing Bad Happened");
         })
         .finally(() => {

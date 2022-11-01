@@ -24,9 +24,6 @@ import {
   GridRowId,
   GridRowModel,
 } from '@mui/x-data-grid';
-import {
-  randomId,
-} from '@mui/x-data-grid-generator';
 
 import {datastatus} from '../../utils/SidebarData';
 
