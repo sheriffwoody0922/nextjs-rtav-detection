@@ -1,6 +1,6 @@
 .container {
   padding: 0 2rem;
-  background-image: url('/background.webp');
+  background-image: url('/background.png');
   background-size: cover;
 }
 
@@ -111,6 +111,8 @@
   margin-left: 0.5rem;
 }
 .logobutton{
+  background-color: pink;
+  color: black;
   width: 70%;
   padding-top: 0.8rem;
   padding-bottom: 0.8rem;

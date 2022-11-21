@@ -87,7 +87,7 @@ export default function Register(){
                 disabled={fetching}>
                 Register
             </Button>
-            <p className="text-white">
+            <p className="text-black">
             Already have an account? {" "}
                 <Link href="/auth/login" className="text-orange-700">
                     Login
