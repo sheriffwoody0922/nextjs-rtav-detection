@@ -19,7 +19,7 @@ app.prepare().then(() => {
     console.log(`Ready on http://localhost:${port}`);
   });
   mongoose
-    .connect("mongodb://localhost/mujiba", {
+    .connect("mongodb://127.0.0.1:27017/mujiba", {
       useUnifiedTopology: true,
       useNewUrlParser: true,
     })
