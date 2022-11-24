@@ -26,6 +26,10 @@ a {
   background-color: rgb(233, 233, 233);
 }
 
+.admin-navbar button{
+  margin-right: 1rem;
+}
+
 .logininput{
   margin-top: 3px !important;
   margin-bottom: 3px !important;

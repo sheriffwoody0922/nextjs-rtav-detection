@@ -10,6 +10,7 @@ import SaveIcon from '@mui/icons-material/Save';
 import CancelIcon from '@mui/icons-material/Close';
 import PlayCircleFilledWhiteOutlinedIcon from '@mui/icons-material/PlayCircleFilledWhiteOutlined';
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
+import Chip from '@mui/material/Chip';
 import {
   GridRowsProp,
   DataGrid,
@@ -42,7 +43,7 @@ function EditToolbar(props: EditToolbarProps) {
     <GridToolbarContainer>
       <div className='flex'>
         {datastatus.map((item:any) =>
-          <span className={`super-app-theme--${item.current} p-1 m-1 border-solid border-gray border-2`} key={item.current}>{item.current}</span>)
+          <Chip className={`super-app-theme--${item.current} m-1`} label={item.current} key={item.current} />)
         }
       </div>
     </GridToolbarContainer>

@@ -10,6 +10,7 @@ import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import Toolbar from '@mui/material/Toolbar';
 import AccountBoxIcon from '@mui/icons-material/AccountBox';
+import GroupAddIcon from '@mui/icons-material/GroupAdd';
 import {toast } from "react-toastify";
 
 
@@ -31,9 +32,13 @@ export default function Navbar(props:any){
                 }}
             >
                 <Toolbar sx={{display:"flex"}} className="admin-navbar">
+                    
+                    <IconButton  color="inherit" edge="start">
+                        <GroupAddIcon></GroupAddIcon>
+                    </IconButton>
                     <IconButton
                         color="inherit"
-                        aria-label="open drawer"
+                        aria-label="log out"
                         edge="start"
                         onClick={(e) => {
                             e.preventDefault();

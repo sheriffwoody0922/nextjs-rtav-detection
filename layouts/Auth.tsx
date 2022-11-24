@@ -22,9 +22,6 @@ export default function Auth({children}:InferProps<typeof Auth.propTypes>){
         </Head>
 
         <main className={styles.main}>
-            <h1 className={styles.title}>
-                Mujiba
-            </h1>
             {children}
         </main>
         </div>

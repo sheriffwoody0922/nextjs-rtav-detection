@@ -14,11 +14,7 @@ export default function Home() {
   return (
     <div className={styles.container}>
 
-
       <main className={styles.main}>
-        <h1 className={styles.title}>
-          Mujiba
-        </h1>
         <Box
           component="form"
           sx={{
