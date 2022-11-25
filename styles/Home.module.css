@@ -113,7 +113,8 @@
 .logobutton{
   background-color: pink;
   color: black;
-  width: 70%;
+  width: 100%;
+  margin: 10px;
   padding-top: 0.8rem;
   padding-bottom: 0.8rem;
 }

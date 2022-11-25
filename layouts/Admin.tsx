@@ -20,9 +20,8 @@ export default function Admin({children, layoutData}:InferProps<typeof Admin.pro
       setMobileOpen(!mobileOpen);
     };
     React.useEffect(() => {
-        console.log(layoutData.user);
         if (!layoutData.user) router.push("/auth/login");
-      }, []);
+    }, []);
 
     return(
         <>

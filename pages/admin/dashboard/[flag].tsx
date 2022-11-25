@@ -12,11 +12,12 @@ export default function Dashboard(props:any){
 
     const [data, setData] = useState([])
     const router = useRouter()
-    const { flag } = router.query
+    const [flag, setFlag] = useState(router.query.flag)
 
     useEffect(()=>{
         console.log(`This is ${flag}`);
         if(flag){
+            console.log("log", flag);
             getdata();
         }
     },[flag])
