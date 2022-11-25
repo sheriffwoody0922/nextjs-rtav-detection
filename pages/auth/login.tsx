@@ -22,7 +22,7 @@ export default function Login(){
         email: "",
         password: "",
       });
-      const [errors, setErrors] = React.useState({});
+     
       const [fetching, setFetching] = React.useState(false);
     
     const handleSubmit = (e:React.MouseEvent<HTMLButtonElement, MouseEvent>) => {

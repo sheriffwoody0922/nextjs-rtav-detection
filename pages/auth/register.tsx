@@ -12,12 +12,17 @@ import Button from '@mui/material/Button';
 import AppRegistrationIcon from '@mui/icons-material/AppRegistration';
 
 
-
+interface ErrorTypes{
+    name: string,
+    email: string,
+    password: string
+}
 
 export default function Register(){
 
     const router = useRouter()
     const [user, setUser] = React.useState({name:"",email:"",password:""})
+    const [errors, setErrors] = React.useState({name:null, email:null, password:null});
     const [fetching, setFetching] = React.useState(false);
 
     const handleSubmit = (e:React.MouseEvent<HTMLButtonElement, MouseEvent>) =>{
@@ -32,7 +37,7 @@ export default function Register(){
         .catch((err) => {
           console.log(err);
           if (err.response) {
-            toast.error("Please input password and name more 6 characters");
+            setErrors(err.response.data);
           } else toast.error("Somathing Bad Happened");
         })
         .finally(() => {
@@ -60,6 +65,7 @@ export default function Register(){
                 value={user.name} 
                 onChange={(e) => {setUser({ ...user, name: e.target.value })}}
             />
+            <div className="w-100 text-sm md:text-base text-red-500 font-semibold">{errors.name}</div>
             <TextField 
                 className="logininput" 
                 id="user-email" 
@@ -69,6 +75,7 @@ export default function Register(){
                 value={user.email}
                 onChange={(e) => {setUser({ ...user, email: e.target.value })}}
             />
+            <div className="w-100 text-sm md:text-base text-red-500 font-semibold">{errors.email}</div>
             <TextField 
                 className="logininput" 
                 id="user-password" 
@@ -79,6 +86,7 @@ export default function Register(){
                 value={user.password}
                 onChange={(e) => {setUser({ ...user, password: e.target.value })}}
             />
+            <div className="w-100 text-sm md:text-base text-red-500 font-semibold">{errors.password}</div>
             <Button 
                 className="loginbutton" 
                 onClick={(e)=>handleSubmit(e)} 

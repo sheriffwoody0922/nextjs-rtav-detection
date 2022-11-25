@@ -18,7 +18,7 @@ export default function Home() {
         <Box
           component="form"
           sx={{
-            '& > :not(style)': { m: 4, width: '300px' },
+           m: 4, width: '300px'
           }}
           noValidate
           autoComplete="off"
