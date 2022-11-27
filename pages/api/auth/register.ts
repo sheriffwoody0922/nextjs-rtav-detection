@@ -12,7 +12,13 @@ const handler = async function handler(req:any, res:any) {
     });
     if (user)
       return res.status(400).send({ email: "User already registered." });
-    user = new User(req.body);
+    user = new User(
+      {
+        email: req.body.email,
+        name: req.body.name,
+        password: req.body.password,
+        usertype: "common"
+      });
     const salt = await bcrypt.genSalt(10);
     user.password = await bcrypt.hash(user.password, salt);
     await user.save();

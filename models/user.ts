@@ -11,6 +11,10 @@ var userSchema = new Schema(
       type: String,
       required: true,
     },
+    usertype:{
+      type: String,
+      required: true,
+    },
     reportlimit:{
       type:Number,
     },
