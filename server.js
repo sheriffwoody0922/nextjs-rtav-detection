@@ -1,6 +1,8 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const next = require("next");
+const fileUpload = require("express-fileupload");
+
 
 const port = parseInt(process.env.PORT, 10) || 3000;
 const dev = process.env.NODE_ENV !== "production";
@@ -10,6 +12,7 @@ const handle = app.getRequestHandler();
 
 app.prepare().then(() => {
   const server = express();
+  // server.use(fileUpload())
 
   server.all("*", (req, res) => {
     return handle(req, res);
