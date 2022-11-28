@@ -3,16 +3,7 @@ import {useRouter} from "next/router";
 import Link from "next/link";
 import axios from "axios";
 import {toast } from "react-toastify";
-
-
 import Auth from "../../layouts/Auth";
-
-import Box from '@mui/material/Box';
-import TextField from '@mui/material/TextField';
-import Button from '@mui/material/Button';
-import InputIcon from '@mui/icons-material/Input';
-
-
 
 export default function Login(){
     
@@ -56,51 +47,54 @@ export default function Login(){
 
     return(
         <Auth>
-            <Box
-            component="form"
-            sx={{
-                m: 4, 
-                width: '300px',
-            }}
-            noValidate
-            autoComplete="off"
-            >
-            <TextField 
-                className="logininput" 
-                id="user-email" 
-                label="Email"  
-                variant="filled"
-                disabled={fetching} 
-                value={user.email}
-                onChange={(e) => {setUser({ ...user, email: e.target.value })}} 
-            />
-            <div className="w-100 text-sm md:text-base text-red-500 font-semibold">{errors.email}</div>
-            <TextField 
-                className="logininput" 
-                id="user-password" 
-                label="Password" 
-                type="password" 
-                variant="filled"
-                disabled={fetching} 
-                value={user.password}
-                onChange={(e) => {setUser({ ...user, password: e.target.value })}} 
-            />
-            <div className="w-100 text-sm md:text-base text-red-500 font-semibold">{errors.password}</div>
-            <Button 
-                className="loginbutton" 
-                onClick={(e)=>handleSubmit(e)} 
-                variant="contained" 
-                endIcon={<InputIcon />}
-                disabled={fetching}>
-                Login 
-            </Button>
-            <p className="text-black">
-                Not Yet Registered?{" "}
-                <Link href="/auth/register" className="text-orange-700">
-                    Register New Account
-                </Link>
-            </p>
-            </Box>
+            <div className="w-full max-w-xs">
+                <form className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+                    <div className="mb-4">
+                        <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="useremail">
+                            Username
+                        </label>
+                        <input 
+                            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" 
+                            id="useremail" 
+                            type="email" 
+                            placeholder="someone@gmail.com"
+                            disabled={fetching} 
+                            value={user.email}
+                            onChange={(e) => {setUser({ ...user, email: e.target.value })}} 
+                        />
+                        <p className="text-red-500 text-xs italic">{errors.email}</p>
+                    </div>
+                    <div className="mb-6">
+                        <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="password">
+                            Password
+                        </label>
+                        <input 
+                            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" 
+                            id="userpassword" 
+                            type="password" 
+                            placeholder="******" 
+                            disabled={fetching} 
+                            value={user.password}
+                            onChange={(e) => {setUser({ ...user, password: e.target.value })}} 
+                        />
+                        <p className="text-red-500 text-xs italic">{errors.password}</p>
+                    </div>
+
+                    <div className="flex items-center justify-between mt-3">
+                        <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button" onClick={(e)=>handleSubmit(e)}>
+                            Sign In
+                        </button>
+                        <p className="text-black text-xs">
+                            <Link href="/auth/register" className="text-orange-700">
+                                Not Yet Registered?
+                            </Link>
+                        </p>
+                    </div>
+                </form>
+                <p className="text-center text-gray-500 text-xs">
+                    &copy;2022 Mujiba. All rights reserved.
+                </p>
+            </div>
         </Auth>
     )
 }
