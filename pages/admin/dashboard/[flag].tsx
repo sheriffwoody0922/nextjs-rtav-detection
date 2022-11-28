@@ -3,12 +3,14 @@ import {useRouter} from "next/router";
 import axios from "axios";
 
 import Admin from "../../../layouts/Admin";
+import { InferGetServerSidePropsType } from 'next'
+import { GetServerSideProps } from 'next'
 import ReportDataGrid from "../../../components/DataGrid/ReportDataGrid";
 import sessionProps from "../../../next-middlewares/sessionProps";
 
 
 
-const Dashboard = (props:any) => {
+const Dashboard = ({layoutData}:InferGetServerSidePropsType<typeof getServerSideProps>) => {
 
     const [data, setData] = useState([])
     const router = useRouter()
@@ -46,7 +48,7 @@ const Dashboard = (props:any) => {
     }
 
     return(
-        <Admin layoutData={props.layoutData}>
+        <Admin layoutData={layoutData}>
             <ReportDataGrid filterkey={flag} data={data} updateData={updatedata}/>
         </Admin>
     )
@@ -55,7 +57,7 @@ const Dashboard = (props:any) => {
 
 export default Dashboard;
 
-export const getServerSideProps = async function (context:any) {
+export const getServerSideProps:GetServerSideProps = async function (context:any) {
     let layoutData = await sessionProps(context);
   
     return { props: { layoutData } };

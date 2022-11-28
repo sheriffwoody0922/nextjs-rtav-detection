@@ -1,11 +1,13 @@
 import React from 'react';
 import sessionProps from "../../next-middlewares/sessionProps";
 import Common from "../../layouts/Common";
+import { GetServerSideProps } from 'next'
+import { InferGetServerSidePropsType } from 'next'
 
-const Mainboard = (props:any) => {
+const Mainboard = ({layoutData}: InferGetServerSidePropsType<typeof getServerSideProps>) => {
 
     return (
-        <Common layoutData={props.layoutData}>
+        <Common layoutData={layoutData}>
             <div></div>
         </Common>
     )
@@ -14,7 +16,7 @@ const Mainboard = (props:any) => {
 export default Mainboard
 
 
-export const getServerSideProps = async function (context:any) {
+export const getServerSideProps:GetServerSideProps = async function (context:any) {
     let layoutData = await sessionProps(context);
   
     return { props: { layoutData } };
