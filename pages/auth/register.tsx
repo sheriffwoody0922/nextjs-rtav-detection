@@ -92,7 +92,7 @@ export default function Register(){
 
                     <div className="flex items-center justify-between mt-3">
                         <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button" onClick={(e)=>handleSubmit(e)}>
-                            Register
+                            Sign Up
                         </button>
                         <p className="text-black text-xs">
                             <Link href="/auth/login" className="text-orange-700">
