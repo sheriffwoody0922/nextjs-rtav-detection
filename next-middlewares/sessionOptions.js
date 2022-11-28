@@ -1,7 +1,7 @@
 const sessionOptions = {
   cookieName: process.env.SESSION_COOKIE_NAME,
   cookieOptions: {
-    Secure: false,
+    secure:false,
     maxAge: 3600,
   },
   password: process.env.APPLICATION_SECRET,
