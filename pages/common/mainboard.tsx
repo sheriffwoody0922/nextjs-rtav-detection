@@ -14,7 +14,8 @@ function Mainboard (props:any) {
     const {layoutData} = props;
 
     useEffect(()=>{
-        if(!props.layoutData.user)
+        console.log(layoutData.user)
+        if(!layoutData.user)
         {
             router.push("/auth/login")
         }
