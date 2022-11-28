@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useRouter } from "next/router";
 import sessionProps from "../../next-middlewares/sessionProps";
 import ReportAdd from "../../components/Common/ReportAdd";
@@ -11,11 +11,10 @@ import {toast } from "react-toastify";
 function Mainboard (props:any) {
 
     const router = useRouter();
-    const {layoutData} = props;
 
-    useEffect(()=>{
-        console.log(layoutData.user)
-        if(!layoutData.user)
+    React.useEffect(()=>{
+        console.log(props.layoutData.user)
+        if(!props.layoutData.user)
         {
             router.push("/auth/login")
         }
@@ -54,7 +53,7 @@ function Mainboard (props:any) {
 
     return (
         <>
-                {layoutData.user&&
+                {props.layoutData.user&&
                 <div className="w-screen">
                 <div className="w-10/12 lg:w-9/12 mx-auto mt-8 divide-y">
                     <div className="w-100 flex justify-between my-1 p-1">
