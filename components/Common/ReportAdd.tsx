@@ -1,12 +1,35 @@
-import React, {useState} from "react"
+import React, {useState, ChangeEvent} from "react"
 import Button from "@mui/material/Button"
+import {toast } from "react-toastify";
+import { any } from "prop-types";
+
+
+interface FileInfoType{
+    video:string,
+    currentfile:object,
+}
 
 export default function ReportAdd(props:any){
-    const [data, setdata] = useState({video:undefined, currentfile:undefined})
+    const [data, setdata] = useState<FileInfoType>({video:"", currentfile:{}})
 
-    const selectvideo = (event:React.SyntheticEvent) =>{
-        const path = URL.createObjectURL(event.target.files[0]);
-        setdata({video:path, currentfile:event.target.files[0]});
+    const selectvideo = (event:ChangeEvent<HTMLInputElement>) => {
+
+        const fileInput = event.target;
+
+        if (!fileInput.files) {
+          toast.error("No file was chosen");
+          return;
+        }
+    
+        if (!fileInput.files || fileInput.files.length === 0) {
+          toast.error("Files list is empty");
+          return;
+        }
+    
+        const file = fileInput.files[0];
+
+        const path = URL.createObjectURL(file);
+        setdata({video:path, currentfile:file});
     }
 
     const uploadvideo = () =>{
