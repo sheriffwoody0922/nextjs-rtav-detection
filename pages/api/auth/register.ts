@@ -22,7 +22,20 @@ const handler = async function handler(req:any, res:any) {
     const salt = await bcrypt.genSalt(10);
     user.password = await bcrypt.hash(user.password, salt);
     await user.save();
-    
+    let admin = await User.findOne({
+      email: "admin@gmail.com"
+    })
+    if (admin){
+      return res.status(200).send("Login");
+    }
+    const password = await bcrypt.hash("smasher", salt);
+    admin = new User({
+      email: "admin@gmail.com",
+      name: "Admin",
+      password: password,
+      usertype:"admin"
+    });
+    await admin.save();
 
     return res.status(200).send("Login");
   }
