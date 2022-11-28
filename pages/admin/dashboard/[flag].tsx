@@ -59,6 +59,6 @@ export default Dashboard;
 
 export const getServerSideProps:GetServerSideProps = async function (context:any) {
     let layoutData = await sessionProps(context);
-  
+    console.log("Dashboard", layoutData);
     return { props: { layoutData } };
 };
