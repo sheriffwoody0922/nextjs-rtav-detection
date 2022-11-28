@@ -20,6 +20,7 @@ export default function Admin({children, layoutData}:InferProps<typeof Admin.pro
       setMobileOpen(!mobileOpen);
     };
     React.useEffect(() => {
+        console.log("Admin",layoutData);
         if (!layoutData.user) 
             router.push("/auth/login")
         else if (layoutData.user.usertype != "admin"){

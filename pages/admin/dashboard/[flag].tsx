@@ -8,7 +8,7 @@ import sessionProps from "../../../next-middlewares/sessionProps";
 
 
 
-export default function Dashboard(props:any){
+const Dashboard = (props:any) => {
 
     const [data, setData] = useState([])
     const router = useRouter()
@@ -51,6 +51,9 @@ export default function Dashboard(props:any){
         </Admin>
     )
 }
+
+
+export default Dashboard;
 
 export const getServerSideProps = async function (context:any) {
     let layoutData = await sessionProps(context);

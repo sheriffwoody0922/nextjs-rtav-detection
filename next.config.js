@@ -1,13 +1,13 @@
-/** @type {import('next').NextConfig} */
-const nextConfig = {
-  reactStrictMode: true,
-  swcMinify: true,
-}
+// /** @type {import('next').NextConfig} */
+// const nextConfig = {
+//   reactStrictMode: true,
+//   swcMinify: true,
+// }
 
-module.exports = nextConfig
+// module.exports = nextConfig
 
 
-/*
+
 module.exports = {
   webpack: (config, { dev, isServer }) => {
     if (!dev && !isServer) {
@@ -20,5 +20,3 @@ module.exports = {
     return config
   },
 }
-
-*/

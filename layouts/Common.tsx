@@ -15,6 +15,7 @@ export default function Common ({children, layoutData}:InferProps<typeof Common.
 
 
     React.useEffect(() => {
+        console.log("Common",layoutData);
         if (!layoutData.user) 
             router.push("/auth/login")
     }, []);

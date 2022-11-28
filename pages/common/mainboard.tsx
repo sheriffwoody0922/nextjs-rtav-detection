@@ -2,7 +2,7 @@ import React from 'react';
 import sessionProps from "../../next-middlewares/sessionProps";
 import Common from "../../layouts/Common";
 
-export default function Mainboard (props:any) {
+const Mainboard = (props:any) => {
 
     return (
         <Common layoutData={props.layoutData}>
@@ -10,6 +10,8 @@ export default function Mainboard (props:any) {
         </Common>
     )
 }
+
+export default Mainboard
 
 
 export const getServerSideProps = async function (context:any) {
