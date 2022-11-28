@@ -26,8 +26,6 @@ const handler = async function handler(req:any, res:any) {
     req.session.set("user", _.pick(user, ["_id", "email", "name", "usertype"]));
     await req.session.save();
 
-    console.log("req.session saved test",req.session.get("user"));
-
     return res.status(200).send(user.usertype);
   }
   return res.status(404).send("");
