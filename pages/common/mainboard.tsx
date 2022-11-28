@@ -9,16 +9,9 @@ import axios, { AxiosRequestConfig } from "axios";
 import {toast } from "react-toastify";
 
 function Mainboard (props:any) {
-
+    
     const router = useRouter();
-
-    React.useEffect(()=>{
-        console.log(props.layoutData.user)
-        if(!props.layoutData.user)
-        {
-            router.push("/auth/login")
-        }
-    },[])
+    const {layoutData} = props;
 
     const uploadandsubmit = async (file:any) => {
 
