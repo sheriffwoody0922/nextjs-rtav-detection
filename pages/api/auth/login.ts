@@ -21,11 +21,11 @@ const handler = async function handler(req:any, res:any) {
     );
     if (!validPassword)
       return res.status(400).send({ password: "Invalid password" });
-    req.session.set("user", _.pick(user, ["_id", "email", "name"]));
+    req.session.set("user", _.pick(user, ["_id", "email", "name", "usertype"]));
 
     await req.session.save();
 
-    return res.status(200).send("Login");
+    return res.status(200).send(user.usertype);
   }
   return res.status(404).send("");
 };

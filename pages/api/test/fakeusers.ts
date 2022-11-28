@@ -15,7 +15,7 @@ const handler = async function handler(req:any, res:any) {
 
     for(let i = 0; i < 10; i++)
     {
-      const user = new User({name:faker.name.fullName(), email:faker.internet.email(), password:password, whatsapp: faker.address.zipCode(), reportlimit:5, reportnumber:0, address:faker.address.streetAddress(), });
+      const user = new User({name:faker.name.fullName(), email:faker.internet.email(), password:password, whatsapp: faker.address.zipCode(), reportlimit:5, reportnumber:0, address:faker.address.streetAddress(), usertype:"common"});
       await user.save();
     }
     

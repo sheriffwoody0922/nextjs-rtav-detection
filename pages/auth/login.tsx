@@ -33,8 +33,13 @@ export default function Login(){
         axios
           .post("/api/auth/login", user)
           .then((res) => {
+            console.log(res);
             toast.success("Login Successfule");
-            router.push("/admin/dashboard/all");
+            if(res.data === "admin")
+                router.push("/admin/dashboard/all");
+            else
+                router.push("/common/mainboard");
+                
           })
           .catch((err) => {
             if(err.response){
