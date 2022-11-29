@@ -32,8 +32,6 @@ export default function Common ({children, layoutData}:InferProps<typeof Common.
                 toast.success(res.data.message)
             });
 
-            return true;
-
         } catch (e: any) {
                 console.error(e);
                 const error =
@@ -41,9 +39,7 @@ export default function Common ({children, layoutData}:InferProps<typeof Common.
                     ? e.response.data.error
                     : "Sorry! something went wrong.";
                 toast.error(error)
-            return false
         };
-        return false;
     }
 
 

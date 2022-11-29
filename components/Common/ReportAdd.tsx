@@ -31,10 +31,7 @@ export default function ReportAdd(props:any){
     }
 
     const uploadvideo = () =>{
-        const uploaded = props.uploadfile(data.currentfile)
-        if(uploaded){
-            setdata({video:"", currentfile:{}})
-        }
+        props.uploadfile(data.currentfile)
     }
     return(
         <div className="w-100">
