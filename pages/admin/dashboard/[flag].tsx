@@ -16,14 +16,7 @@ const Dashboard = ({layoutData}:InferGetServerSidePropsType<typeof getServerSide
     const router = useRouter()
     const [flag, setFlag] = useState(router.query.flag)
 
-    useEffect(()=>{
-        console.log(`This is ${flag}`);
-        if(flag){
-            console.log("log", flag);
-            getdata();
-        }
-    },[flag])
-
+    
     const getdata = () => {
         axios
         .post("/api/admin/dashboard/getdata", {flag:flag})
@@ -35,6 +28,7 @@ const Dashboard = ({layoutData}:InferGetServerSidePropsType<typeof getServerSide
         .finally(() => {
         });
     }
+    
     const updatedata = (data:any) => {
         axios
             .post("/api/admin/dashboard/setdata", data)
@@ -46,6 +40,14 @@ const Dashboard = ({layoutData}:InferGetServerSidePropsType<typeof getServerSide
             .finally(() => {
         });
     }
+
+    useEffect(()=>{
+        console.log(`This is ${flag}`);
+        if(flag){
+            console.log("log", flag);
+            getdata();
+        }
+    },[flag])
 
     return(
         <Admin layoutData={layoutData}>

@@ -8,6 +8,7 @@ const Mainboard = ({layoutData}: InferGetServerSidePropsType<typeof getServerSid
 
     return (
         <Common layoutData={layoutData}>
+            <div></div>
         </Common>
     )
 }

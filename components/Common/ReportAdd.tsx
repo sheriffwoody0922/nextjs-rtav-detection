@@ -1,8 +1,5 @@
 import React, {useState, ChangeEvent} from "react"
-import Button from "@mui/material/Button"
 import {toast } from "react-toastify";
-import { any } from "prop-types";
-
 
 interface FileInfoType{
     video:string,
@@ -23,6 +20,7 @@ export default function ReportAdd(props:any){
     
         if (!fileInput.files || fileInput.files.length === 0) {
           toast.error("Files list is empty");
+          setdata({video:"", currentfile:{}})
           return;
         }
     
@@ -33,19 +31,19 @@ export default function ReportAdd(props:any){
     }
 
     const uploadvideo = () =>{
-        props.uploadfile(data.currentfile)
+        const uploaded = props.uploadfile(data.currentfile)
+        if(uploaded){
+            setdata({video:"", currentfile:{}})
+        }
     }
     return(
         <div className="w-100">
             <div className="w-100 flex justify-between">
-                <Button variant="outlined" component="label">
-                    Choose file
-                    <input accept="video/*" type="file" hidden onChange={(e) => selectvideo(e)}/>
-                </Button>
+                    <input className="font-bold my-4" accept="video/*" type="file" onChange={(e) => selectvideo(e)}/>
                 {data.video&&
-                    <Button variant="outlined" component="label" onClick={()=>uploadvideo()}>
+                    <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-36 my-auto" onClick={()=>uploadvideo()}>
                         Upload
-                    </Button>
+                    </button>
                 }
             </div>
             <div className="w-100 mt-2">
