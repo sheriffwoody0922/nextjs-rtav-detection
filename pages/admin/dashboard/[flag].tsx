@@ -14,7 +14,7 @@ const Dashboard = ({layoutData}:InferGetServerSidePropsType<typeof getServerSide
 
     const [data, setData] = useState([])
     const router = useRouter()
-    const [flag, setFlag] = useState(router.query.flag)
+    const {flag} = router.query
 
     
     const getdata = () => {

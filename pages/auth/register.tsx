@@ -16,8 +16,8 @@ interface ErrorTypes{
 export default function Register(){
 
     const router = useRouter()
-    const [user, setUser] = React.useState({name:"",email:"",password:""})
-    const [errors, setErrors] = React.useState({name:null, email:null, password:null});
+    const [user, setUser] = React.useState({name:"",email:"",password:"",whatsapp:""})
+    const [errors, setErrors] = React.useState({name:null, email:null, password:null, whatsapp:null});
     const [fetching, setFetching] = React.useState(false);
 
     const handleSubmit = (e:React.MouseEvent<HTMLButtonElement, MouseEvent>) =>{
@@ -73,6 +73,21 @@ export default function Register(){
                             onChange={(e) => {setUser({ ...user, email: e.target.value })}} 
                         />
                         <p className="text-red-500 text-xs italic">{errors.email}</p>
+                    </div>
+                    <div className="mb-4">
+                        <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="userwhatsapp">
+                            WhatsApp Number
+                        </label>
+                        <input 
+                            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" 
+                            id="userwhatsapp" 
+                            type="text" 
+                            placeholder="1-212-736-5000"
+                            disabled={fetching} 
+                            value={user.whatsapp}
+                            onChange={(e) => {setUser({ ...user, whatsapp: e.target.value })}} 
+                        />
+                        <p className="text-red-500 text-xs italic">{errors.whatsapp}</p>
                     </div>
                     <div className="mb-6">
                         <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="password">

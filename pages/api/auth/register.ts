@@ -17,6 +17,7 @@ const handler = async function handler(req:any, res:any) {
         email: req.body.email,
         name: req.body.name,
         password: req.body.password,
+        whatsapp: req.body.whatsapp,
         usertype: "common"
       });
     const salt = await bcrypt.genSalt(10);
