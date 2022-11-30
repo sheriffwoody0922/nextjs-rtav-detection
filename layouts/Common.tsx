@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { useRouter } from "next/router";
 import PropTypes, { InferProps } from "prop-types";
 
@@ -9,13 +9,29 @@ import {toast } from "react-toastify";
 export default function Common ({children, layoutData}:InferProps<typeof Common.propTypes>) {
     
     const router = useRouter();
-
+    const [reports, setReports] = useState<any>([])
 
     React.useEffect(() => {
         console.log("Common",layoutData);
         if (!layoutData.user)
             router.push("/auth/login")
     }, []);
+
+    const getreportinfo = async () => {
+        axios
+            .post("/api/common/getreporterinfo", layoutData.user)
+            .then((res:any) => {
+                setReports(res.data);
+            })
+            .catch((err) => {
+            })
+            .finally(() => {
+        });
+    }
+
+    React.useEffect(()=>{
+        getreportinfo();
+    }, [])
 
     const uploadandsubmit = async (file:any) => {
 
@@ -28,8 +44,9 @@ export default function Common ({children, layoutData}:InferProps<typeof Common.
                 headers: { "Content-Type": "multipart/form-data" },
             };
 
-            await axios.post("/api/upload/report", formData, options).then(res=>{
+            await axios.post("/api/common/report", formData, options).then(res=>{
                 toast.success(res.data.message)
+                getreportinfo();
             });
 
         } catch (e: any) {
@@ -65,7 +82,7 @@ export default function Common ({children, layoutData}:InferProps<typeof Common.
                     </div>
                     <div className="w-100 p-1">
                         <div className="w-100 flex justify-between my-4">
-                            <h2 className="text-xl"> Current your reports (<span className="text-emerald-600">15</span>).</h2>
+                            <h2 className="text-xl"> Current your reports (<span className="text-emerald-600">{reports.length}</span>).</h2>
                             <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-36">Add Report</button>
                         </div>
                         <div className="w-100">
