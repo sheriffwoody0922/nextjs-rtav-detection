@@ -80,10 +80,10 @@ export const datastatus:any[] = [
     },{
         current:"cancel",
         upgrade:"trash",
-        cancel:"trash",
+        cancel:"new",
     },{
         current:"trash",
-        upgrade:"trash",
-        cancel:"trash",
+        upgrade:"new",
+        cancel:"new",
     }
 ]
