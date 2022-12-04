@@ -25,6 +25,7 @@ const handler = async function handler(req:any, res:any) {
             // Tada! random user
             let report = new Report({
                 reportowner:result._id,
+                reporttype:fields.reporttype,
                 reportvideo:path, 
                 reportgps:`${faker.address.latitude()} ${faker.address.longitude()}`,
                 reportdate:new Date(),

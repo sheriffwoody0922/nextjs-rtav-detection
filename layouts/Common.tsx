@@ -5,6 +5,7 @@ import PropTypes, { InferProps } from "prop-types";
 import ReportAdd from "../components/Common/ReportAdd";
 import axios, { AxiosRequestConfig } from "axios";
 import {toast } from "react-toastify";
+import { String } from 'lodash';
 
 export default function Common ({children, layoutData}:InferProps<typeof Common.propTypes>) {
     
@@ -48,11 +49,12 @@ export default function Common ({children, layoutData}:InferProps<typeof Common.
         getreporttypes();
     }, [])
 
-    const uploadandsubmit = async (file:any) => {
+    const uploadandsubmit = async (file:any, type:string) => {
 
         try {
             let formData = new FormData();
             formData.append("useremail", layoutData.user.email)
+            formData.append("reporttype", type)
             formData.append("file", file);
 
             const options: AxiosRequestConfig = {

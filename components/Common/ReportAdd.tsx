@@ -14,11 +14,10 @@ export default function ReportAdd(props:any){
 
     useEffect(()=>{
         const data = props.typesdata[0] ?? "";
-        setSelected(data.typename)
+        setSelected(data._id)
     },[props.typesdata]);
 
     const selectchange = (event:ChangeEvent<HTMLSelectElement>) => {
-        console.log(event.target.value)
         setSelected(event.target.value);
     }
     const selectvideo = (event:ChangeEvent<HTMLInputElement>) => {
@@ -46,14 +45,14 @@ export default function ReportAdd(props:any){
     }
 
     const uploadvideo = () =>{
-        props.uploadfile(data.currentfile)
+        props.uploadfile(data.currentfile, selected)
     }
     return( <div className="w-100">
             <div className="w-100 flex justify-between">
                 <input className="font-bold my-auto py-2 pl-1" accept="video/*, image/*" type="file" onChange={(e) => selectvideo(e)}></input>
                 {data.media&&<div className="flex">
                     <select id="reporttype" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline my-auto" value={selected} onChange={(e) => selectchange(e)}>
-                        {props.typesdata.map((item:any) => <option key={item._id} value={item.typename}>{item.typename}</option>)}
+                        {props.typesdata.map((item:any) => <option key={item._id} value={item._id}>{item.typename}</option>)}
                     </select>
                     <button className="ml-1 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-36 my-auto" onClick={()=>uploadvideo()}>
                         Upload
