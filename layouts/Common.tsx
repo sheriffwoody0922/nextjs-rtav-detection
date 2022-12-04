@@ -10,6 +10,7 @@ export default function Common ({children, layoutData}:InferProps<typeof Common.
     
     const router = useRouter();
     const [reports, setReports] = useState<any>([])
+    const [reporttypes, setReporttypes] = useState<any>([])
 
     React.useEffect(() => {
         console.log("Common",layoutData);
@@ -29,8 +30,22 @@ export default function Common ({children, layoutData}:InferProps<typeof Common.
         });
     }
 
+    const getreporttypes = async () => {
+        axios
+            .post("/api/common/getreporttypes", layoutData.user)
+            .then((res:any) => {
+                console.log(res.data);
+                setReporttypes(res.data);
+            })
+            .catch((err) => {
+            })
+            .finally(() => {
+        });
+    }
+
     React.useEffect(()=>{
         getreportinfo();
+        getreporttypes();
     }, [])
 
     const uploadandsubmit = async (file:any) => {
