@@ -1,4 +1,4 @@
-import React, {useState, ChangeEvent} from "react"
+import React, {useState, ChangeEvent, useEffect} from "react"
 import {toast } from "react-toastify";
 
 interface FileInfoType{
@@ -8,8 +8,19 @@ interface FileInfoType{
 }
 
 export default function ReportAdd(props:any){
-    const [data, setdata] = useState<FileInfoType>({media:"", currentfile:{}, filetype:""})
+    const [data, setdata] = useState<FileInfoType>({media:"", currentfile:{}, filetype:""});
 
+    const [selected, setSelected] = useState("");
+
+    useEffect(()=>{
+        const data = props.typesdata[0] ?? "";
+        setSelected(data.typename)
+    },[props.typesdata]);
+
+    const selectchange = (event:ChangeEvent<HTMLSelectElement>) => {
+        console.log(event.target.value)
+        setSelected(event.target.value);
+    }
     const selectvideo = (event:ChangeEvent<HTMLInputElement>) => {
 
         const fileInput = event.target;
@@ -41,12 +52,8 @@ export default function ReportAdd(props:any){
             <div className="w-100 flex justify-between">
                 <input className="font-bold my-auto py-2 pl-1" accept="video/*, image/*" type="file" onChange={(e) => selectvideo(e)}></input>
                 {data.media&&<div className="flex">
-                    <select id="reporttype" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline my-auto">
-                        <option>Dangerous driving</option>
-                        <option>Traffic light not obeyed</option>
-                        <option>Illegal Overtake</option>
-                        <option>Illegal stopping</option>
-                        <option>Failure to stop after accident</option>
+                    <select id="reporttype" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline my-auto" value={selected} onChange={(e) => selectchange(e)}>
+                        {props.typesdata.map((item:any) => <option key={item._id} value={item.typename}>{item.typename}</option>)}
                     </select>
                     <button className="ml-1 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-36 my-auto" onClick={()=>uploadvideo()}>
                         Upload
