@@ -8,8 +8,9 @@ import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/DeleteOutlined';
 import SaveIcon from '@mui/icons-material/Save';
 import CancelIcon from '@mui/icons-material/Close';
-import PlayCircleFilledWhiteOutlinedIcon from '@mui/icons-material/PlayCircleFilledWhiteOutlined';
+import TheatersIcon from '@mui/icons-material/Theaters';
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
+import InsertPhotoIcon from '@mui/icons-material/InsertPhoto';
 import Chip from '@mui/material/Chip';
 import {
   GridRowsProp,
@@ -55,11 +56,11 @@ const formatRows: GridRowsProp= [];
 export default function ReportDataGrid(props:any) {
 
   const [open, setOpen] = React.useState(false);
-  const[videopath, setVideopath] = React.useState("");
+  const[videopath, setVideopath] = React.useState({fpath:"", ftype:""});
 
-  const handleClickOpen = (value:string) => {
+  const handleClickOpen = (fvalue:string, ftype:string) => {
     setOpen(true);
-    setVideopath(value);
+    setVideopath({fpath:fvalue, ftype:ftype});
   };
 
   const updatedata = (method:string,data:any) => {
@@ -208,11 +209,11 @@ export default function ReportDataGrid(props:any) {
       getActions: (params:any) => {
         return [
           <GridActionsCellItem
-            key={params.row.reportvideo}
-            icon={<PlayCircleFilledWhiteOutlinedIcon />}
+            key={params.row.reportmedia.filepath}
+            icon={params.row.reportmedia.filetype == "video" ? <TheatersIcon />: <InsertPhotoIcon />}
             label="Video View"
             className="textPrimary"
-            onClick={() => handleClickOpen(params.row.reportvideo)}
+            onClick={() => handleClickOpen(params.row.reportmedia.filepath, params.row.reportmedia.filetype)}
             color="inherit"
           />
         ];  
@@ -322,7 +323,7 @@ export default function ReportDataGrid(props:any) {
         experimentalFeatures={{ newEditingApi: true }}
       />
       <div>
-        <VideoModal close={handleClose} isshow={open} path={videopath}></VideoModal>
+        <VideoModal close={handleClose} isshow={open} media={videopath}></VideoModal>
       </div>
     </Box>
   );
@@ -340,10 +341,11 @@ const VideoModal = (props:any) => {
         {"Reported Video"}
       </DialogTitle>
       <DialogContent>
-        <video controls width="50%" style={{width:"inherit"}}>
-          <source src={props.path} type="video/mp4"/>
+        {props.media.ftype=="video"?<video controls width="50%" style={{width:"inherit"}}>
+          <source src={props.media.fpath} type="video/mp4"/>
             <h5>{`Sorry, Your browser doesn't support videos.`}</h5>
-        </video>
+        </video>:<img src={props.media.fpath} alt="Does Not exits"/>}
+
       </DialogContent>
     </Dialog>
   )
