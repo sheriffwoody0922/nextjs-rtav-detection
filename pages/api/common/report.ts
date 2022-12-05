@@ -20,7 +20,7 @@ const handler = async function handler(req:any, res:any) {
 
       const fileinfo = await saveFile(files.file)
 
-      let typeinfo = await ReportType.findOne({typename: "unknown"});
+      let typeinfo = await ReportType.findOne({typename: "standard"});
       
       User.findOne({email: fields.useremail,}).exec(
         function (err, result) {

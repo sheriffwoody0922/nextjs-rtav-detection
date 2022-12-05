@@ -176,6 +176,7 @@ export default function ReportDataGrid(props:any) {
       editable: true,
       type: "singleSelect",
       valueOptions : [
+        "standard",
         "Dangerous driving", 
         "Traffic light not obeyed", 
         "Illegal Overtake",

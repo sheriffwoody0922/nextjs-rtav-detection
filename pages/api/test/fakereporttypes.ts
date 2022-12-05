@@ -7,28 +7,28 @@ const handler = async function handler(req:any, res:any) {
 
     const data = [
         {
-            typename:"unknown",
+            typename:"standard",
             typeprice:20,
         },
         {
             typename:"Dangerous driving",
-            typeprice:20,
-        },
-        {
-            typename:"Traffic light not obeyed",
-            typeprice:30,
-        },
-        {
-            typename:"Illegal Overtake",
             typeprice:40,
         },
         {
+            typename:"Traffic light not obeyed",
+            typeprice:60,
+        },
+        {
+            typename:"Illegal Overtake",
+            typeprice:80,
+        },
+        {
             typename:"Illegal stopping",
-            typeprice:50,
+            typeprice:100,
         },
         {
             typename:"Failure to stop after accident",
-            typeprice:60,
+            typeprice:120,
         }
     ]
 
