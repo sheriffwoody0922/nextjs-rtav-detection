@@ -350,7 +350,7 @@ const VideoModal = (props:any) => {
     aria-labelledby="responsive-dialog-title"
     >
       <DialogTitle id="responsive-dialog-title">
-        {"Reported Video"}
+        {`Reported ${props.media.ftype}`}
       </DialogTitle>
       <DialogContent>
         {props.media.ftype=="video"?<video controls width="50%" style={{width:"inherit"}}>
