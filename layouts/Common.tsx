@@ -5,7 +5,6 @@ import PropTypes, { InferProps } from "prop-types";
 import ReportAdd from "../components/Common/ReportAdd";
 import axios, { AxiosRequestConfig } from "axios";
 import {toast } from "react-toastify";
-import { String } from 'lodash';
 
 export default function Common ({children, layoutData}:InferProps<typeof Common.propTypes>) {
     

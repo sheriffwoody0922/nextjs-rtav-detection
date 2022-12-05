@@ -1,5 +1,4 @@
 import User from "../../../models/user";
-import Car from "../../../models/car";
 import ReportType from "../../../models/reporttype";
 import Report from "../../../models/report";
 import formidable from "formidable";
@@ -18,7 +17,7 @@ const handler = async function handler(req:any, res:any) {
     const form = new formidable.IncomingForm();
 
     form.parse(req, async function (err:any, fields:any, files:any) {
-      console.log(fields);
+
       const fileinfo = await saveFile(files.file)
 
       let typeinfo = await ReportType.findOne({_id: fields.reporttype});

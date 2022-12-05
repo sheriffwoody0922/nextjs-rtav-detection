@@ -76,7 +76,8 @@ export default function ReportDataGrid(props:any) {
       fine:data.reportfine,
       whatsapp:data.sendedwhatsapp,
       car:data.reportedcar,
-      flag:flag
+      flag:flag,
+      type:data.rreporttype,
     }
     props.updateData(changeddata);
   } 
@@ -170,8 +171,15 @@ export default function ReportDataGrid(props:any) {
       field: 'rreporttype', 
       headerName: 'Type', 
       width:200,
-      editable: false,
-      sortable: false,
+      editable: true,
+      type: "singleSelect",
+      valueOptions : [
+        "Dangerous driving", 
+        "Traffic light not obeyed", 
+        "Illegal Overtake",
+        "Illegal stopping",
+        "Failure to stop after accident",
+      ],
       renderCell: (params:any) =>  (
         <Tooltip title={params.row.reporttype.typename}>
           <span className="table-cell-trucate">{params.row.reporttype.typename}</span>
@@ -357,7 +365,6 @@ const VideoModal = (props:any) => {
           <source src={props.media.fpath} type="video/mp4"/>
             <h5>{`Sorry, Your browser doesn't support videos.`}</h5>
         </video>:<img src={props.media.fpath} alt="Does Not exits"/>}
-
       </DialogContent>
     </Dialog>
   )
