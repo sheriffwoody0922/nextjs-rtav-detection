@@ -145,7 +145,7 @@ export default function ReportDataGrid(props:any) {
     { field: '_id', headerName: '_id', width: 0, editable: false, hide: true },
     { field: 'rname', 
       headerName: '👥 Name', 
-      width: 150, 
+      width: 120, 
       editable: false,
       sortable: false,
       renderCell: (params:any) =>  (
@@ -163,6 +163,18 @@ export default function ReportDataGrid(props:any) {
       renderCell: (params:any) =>  (
         <Tooltip title={params.row.reportowner.whatsapp}>
           <span className="table-cell-trucate">{params.row.reportowner.whatsapp}</span>
+        </Tooltip>
+      ),
+     },
+     { 
+      field: 'rreporttype', 
+      headerName: 'Type', 
+      width:200,
+      editable: false,
+      sortable: false,
+      renderCell: (params:any) =>  (
+        <Tooltip title={params.row.reporttype.typename}>
+          <span className="table-cell-trucate">{params.row.reporttype.typename}</span>
         </Tooltip>
       ),
      },
