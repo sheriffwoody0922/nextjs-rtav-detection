@@ -1,5 +1,5 @@
 import User from "../../../models/user";
-// import ReportType from "../../../models/reporttype";
+import ReportType from "../../../models/reporttype";
 import _ from "lodash";
 import bcrypt from "bcryptjs";
 import loginValidator from "../../../validators/auth/loginValidator";
@@ -20,12 +20,12 @@ const handler = async function handler(req:any, res:any) {
       user.password
     );
 
-    // let reporttype = new ReportType({
-    //   typename:"Dangerous driving",
-    //   typeprice:20
-    // })
+    let reporttype = new ReportType({
+      typename:"Dangerous driving",
+      typeprice:20
+    })
 
-    // await reporttype.save();
+    await reporttype.save();
 
     if (!validPassword)
       return res.status(400).send({ password: "Invalid password" });
