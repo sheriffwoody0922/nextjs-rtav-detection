@@ -73,7 +73,6 @@ export default function ReportDataGrid(props:any) {
     }
     const changeddata = {
       _id:data._id,
-      fine:data.reportfine,
       whatsapp:data.sendedwhatsapp,
       car:data.reportedcar,
       flag:flag,
@@ -219,7 +218,7 @@ export default function ReportDataGrid(props:any) {
     },
     { field: 'reportedcar', headerName: 'Car Number', width:130, editable: true },
     { field: 'sendedwhatsapp', headerName: 'Owner 📱', sortable: false, width:120, editable: true },
-    { field: 'reportfine', headerName: '💲', type:'number', width:70, editable: true },
+    { field: 'reportfine', headerName: '💲', type:'number', width:70, editable: false },
     {
       field: 'video',
       type: 'actions',
