@@ -19,7 +19,7 @@ const handler = async function handler(req:any, res:any) {
 
     form.parse(req, async function (err:any, fields:any, files:any) {
       console.log(fields);
-      const path = await saveFile(files.file)
+      const fileinfo = await saveFile(files.file)
 
       let typeinfo = await ReportType.findOne({_id: fields.reporttype});
       User.findOne({email: fields.useremail,}).exec(
@@ -28,7 +28,7 @@ const handler = async function handler(req:any, res:any) {
             let report = new Report({
                 reportowner:result._id,
                 reporttype:typeinfo._id,
-                reportvideo:path, 
+                reportmedia:{filepath:fileinfo.path, filetype:fileinfo.type}, 
                 reportgps:`${faker.address.latitude()} ${faker.address.longitude()}`,
                 reportdate:new Date(),
                 reportedcar:`${faker.vehicle.manufacturer()} ${faker.vehicle.model()}`,
@@ -51,5 +51,5 @@ const saveFile = async (file:any) => {
   const extension = file.mimetype.split('/');
   fs.writeFileSync(`./public/uploads/${file.newFilename}.${extension[1]}`, data);
   await fs.unlinkSync(file.filepath);
-  return `/uploads/${file.newFilename}.${extension[1]}`;
+  return {path:`/uploads/${file.newFilename}.${extension[1]}`, type:extension[0]};
 };

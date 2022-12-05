@@ -12,10 +12,14 @@ var reportSchema = new Schema(
         type: mongoose.Types.ObjectId,
         ref: "ReportType"
       },
-      reportvideo: {
-        type: String,
-        required: true,
-      },
+      reportmedia: {
+        filetype: {
+          type: String,
+        },
+        filepath: {
+          type:String,
+        }
+      },  
       reportgps: {
         type: String,
         required: true,
