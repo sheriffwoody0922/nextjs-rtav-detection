@@ -16,7 +16,7 @@ const handler = async function handler(req:any, res:any) {
 
         const filter = {_id:req.body._id};
         const data = {
-            reportfine:req.body.rtype.typeprice,
+            reportfine:rtype.typeprice,
             reportedcar:req.body.car,
             sendedwhatsapp:req.body.whatsapp,
             reportflag:req.body.flag,
