@@ -27,6 +27,9 @@ import {
   GridRowModel,
 } from '@mui/x-data-grid';
 
+import Zoom from 'react-medium-image-zoom'
+import 'react-medium-image-zoom/dist/styles.css'
+
 import {datastatus} from '../../utils/SidebarData';
 
 
@@ -363,7 +366,13 @@ const VideoModal = (props:any) => {
         {props.media.ftype=="video"?<video controls width="50%" style={{width:"inherit"}}>
           <source src={props.media.fpath} type="video/mp4"/>
             <h5>{`Sorry, Your browser doesn't support videos.`}</h5>
-        </video>:<img src={props.media.fpath} alt="Does Not exits"/>}
+        </video>:<Zoom>
+          <img
+            alt="That Wanaka Tree, New Zealand by Laura Smetsers"
+            src={props.media.fpath}
+            width="500"
+          /> 
+        </Zoom>}
       </DialogContent>
     </Dialog>
   )

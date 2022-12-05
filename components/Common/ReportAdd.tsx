@@ -1,4 +1,4 @@
-import React, {useState, ChangeEvent, useEffect} from "react"
+import React, {useState, ChangeEvent, useEffect} from "react";
 import {toast } from "react-toastify";
 
 interface FileInfoType{
