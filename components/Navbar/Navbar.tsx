@@ -10,6 +10,7 @@ import AccountBoxIcon from '@mui/icons-material/AccountBox';
 import GroupAddIcon from '@mui/icons-material/GroupAdd';
 import DirectionsCarIcon from '@mui/icons-material/DirectionsCar';
 import ReportProblemIcon from '@mui/icons-material/ReportProblem';
+import TitleIcon from '@mui/icons-material/Title';
 import {toast } from "react-toastify";
 
 
@@ -32,6 +33,18 @@ export default function Navbar(props:any){
             >
                 <Toolbar sx={{display:"flex"}} className="admin-navbar">
                     
+                    <IconButton  
+                        color="inherit" 
+                        edge="start"
+                        onClick={(e) => {
+                            e.preventDefault();
+                            axios.get("/api/test/fakereporttypes").then((res) => {
+                              toast.success(res.data);
+                            });
+                        }}
+                    >
+                        <TitleIcon></TitleIcon>
+                    </IconButton>
                     <IconButton  
                         color="inherit" 
                         edge="start"
