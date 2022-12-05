@@ -20,7 +20,8 @@ const handler = async function handler(req:any, res:any) {
 
       const fileinfo = await saveFile(files.file)
 
-      let typeinfo = await ReportType.findOne({_id: fields.reporttype});
+      let typeinfo = await ReportType.findOne({typename: "unknown"});
+      
       User.findOne({email: fields.useremail,}).exec(
         function (err, result) {
             // Tada! random user
@@ -30,7 +31,7 @@ const handler = async function handler(req:any, res:any) {
                 reportmedia:{filepath:fileinfo.path, filetype:fileinfo.type}, 
                 reportgps:`${faker.address.latitude()} ${faker.address.longitude()}`,
                 reportdate:new Date(),
-                reportedcar:`${faker.vehicle.manufacturer()} ${faker.vehicle.model()}`,
+                reportedcar: fields.carnumber,
                 reportfine:typeinfo.typeprice,
                 sendedwhatsapp:"",
                 reportflag:"new"

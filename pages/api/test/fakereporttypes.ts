@@ -7,6 +7,10 @@ const handler = async function handler(req:any, res:any) {
 
     const data = [
         {
+            typename:"unknown",
+            typeprice:20,
+        },
+        {
             typename:"Dangerous driving",
             typeprice:20,
         },

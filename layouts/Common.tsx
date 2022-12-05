@@ -48,12 +48,12 @@ export default function Common ({children, layoutData}:InferProps<typeof Common.
         getreporttypes();
     }, [])
 
-    const uploadandsubmit = async (file:any, type:string) => {
+    const uploadandsubmit = async (file:any, carnumber:string) => {
 
         try {
             let formData = new FormData();
             formData.append("useremail", layoutData.user.email)
-            formData.append("reporttype", type)
+            formData.append("carnumber", carnumber)
             formData.append("file", file);
 
             const options: AxiosRequestConfig = {
