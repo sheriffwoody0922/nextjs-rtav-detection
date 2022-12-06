@@ -14,6 +14,7 @@ app.prepare().then(() => {
   const server = express();
   // server.use(fileUpload())
 
+  server.use("/upload", express.static(__dirname + "/public/uploads"));
   server.all("*", (req, res) => {
     return handle(req, res);
   });

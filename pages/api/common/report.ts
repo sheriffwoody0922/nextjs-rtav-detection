@@ -55,5 +55,5 @@ const saveFile = async (file:any) => {
   const extension = file.mimetype.split('/');
   fs.writeFileSync(`./public/uploads/${file.newFilename}.${extension[1]}`, data);
   await fs.unlinkSync(file.filepath);
-  return {path:`/uploads/${file.newFilename}.${extension[1]}`, type:extension[0]};
+  return {path:`/upload/${file.newFilename}.${extension[1]}`, type:extension[0]};
 };
