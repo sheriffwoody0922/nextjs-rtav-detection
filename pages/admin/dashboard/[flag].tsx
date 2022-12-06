@@ -16,7 +16,7 @@ const Dashboard = ({layoutData}:InferGetServerSidePropsType<typeof getServerSide
     const router = useRouter()
     const {flag} = router.query
 
-    
+
     const getdata = () => {
         axios
         .post("/api/admin/dashboard/getdata", {flag:flag})

@@ -3,11 +3,11 @@ var Schema = mongoose.Schema;
 
 var reporttypeSchema = new Schema(
     {
-        typename:{
+        label:{
             type:String,
             required:true,
         },
-        typeprice:{
+        value:{
             type:Number,
             required:true,
         }

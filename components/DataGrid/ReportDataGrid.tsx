@@ -45,10 +45,14 @@ function EditToolbar(props: EditToolbarProps) {
 
   return (
     <GridToolbarContainer>
-      <div className='flex'>
+      <div className='w-full flex'>
         {datastatus.map((item:any) =>
           <Chip className={`super-app-theme--${item.current} m-1`} label={item.current} key={item.current} />)
         }
+      </div>
+      <div className='w-full flex'>
+        <input type="text" id="first_name" className=" border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search Cars" />
+        <button type="button" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Search</button>
       </div>
     </GridToolbarContainer>
   );
@@ -79,8 +83,10 @@ export default function ReportDataGrid(props:any) {
       whatsapp:data.sendedwhatsapp,
       car:data.reportedcar,
       flag:flag,
-      type:data.rreporttype,
+      type:data.reporttype,
+      fine:data.reportfine,
     }
+    console.log(changeddata);
     props.updateData(changeddata);
   } 
 
@@ -170,24 +176,19 @@ export default function ReportDataGrid(props:any) {
       ),
      },
      { 
-      field: 'rreporttype', 
+      field: 'reporttype', 
       headerName: 'Type', 
       width:200,
       editable: true,
       type: "singleSelect",
       valueOptions : [
         "standard",
-        "Dangerous driving", 
-        "Traffic light not obeyed", 
+        "Dangerous driving",
+        "Traffic light not obeyed",
         "Illegal Overtake",
         "Illegal stopping",
-        "Failure to stop after accident",
-      ],
-      renderCell: (params:any) =>  (
-        <Tooltip title={params.row.reporttype.typename}>
-          <span className="table-cell-trucate">{params.row.reporttype.typename}</span>
-        </Tooltip>
-      ),
+        "Failure to stop after accident"
+      ]
      },
     { 
       field: 'reportnumber', 
@@ -222,7 +223,7 @@ export default function ReportDataGrid(props:any) {
     },
     { field: 'reportedcar', headerName: 'Car Number', width:130, editable: true },
     { field: 'sendedwhatsapp', headerName: 'Owner 📱', sortable: false, width:120, editable: true },
-    { field: 'reportfine', headerName: '💲', type:'number', width:70, editable: false },
+    { field: 'reportfine', headerName: '💲', type:'number', width:70, editable: true },
     {
       field: 'video',
       type: 'actions',

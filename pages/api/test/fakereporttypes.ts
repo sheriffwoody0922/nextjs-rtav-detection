@@ -7,33 +7,33 @@ const handler = async function handler(req:any, res:any) {
 
     const data = [
         {
-            typename:"standard",
-            typeprice:20,
+            label:"standard",
+            value:20,
         },
         {
-            typename:"Dangerous driving",
-            typeprice:40,
+            label:"Dangerous driving",
+            value:40,
         },
         {
-            typename:"Traffic light not obeyed",
-            typeprice:60,
+            label:"Traffic light not obeyed",
+            value:60,
         },
         {
-            typename:"Illegal Overtake",
-            typeprice:80,
+            label:"Illegal Overtake",
+            value:80,
         },
         {
-            typename:"Illegal stopping",
-            typeprice:100,
+            label:"Illegal stopping",
+            value:100,
         },
         {
-            typename:"Failure to stop after accident",
-            typeprice:120,
+            label:"Failure to stop after accident",
+            value:120,
         }
     ]
 
     for(let i = 0; i < data.length; i++){
-        const reporttype = new ReportType({typename:data[i].typename, typeprice:data[i].typeprice});
+        const reporttype = new ReportType({label:data[i].label, value:data[i].value});
         await reporttype.save();
     }
 

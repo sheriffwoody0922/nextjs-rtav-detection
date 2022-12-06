@@ -27,6 +27,7 @@ export default function Admin({children, layoutData}:InferProps<typeof Admin.pro
             router.push("/common/mainboard")
         }
     }, []);
+    
 
     return(
         <>

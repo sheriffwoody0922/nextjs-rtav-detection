@@ -19,20 +19,18 @@ const handler = async function handler(req:any, res:any) {
     form.parse(req, async function (err:any, fields:any, files:any) {
 
       const fileinfo = await saveFile(files.file)
-
-      let typeinfo = await ReportType.findOne({typename: "standard"});
       
       User.findOne({email: fields.useremail,}).exec(
         function (err, result) {
             // Tada! random user
             let report = new Report({
                 reportowner:result._id,
-                reporttype:typeinfo._id,
+                reporttype:"standard",
                 reportmedia:{filepath:fileinfo.path, filetype:fileinfo.type}, 
                 reportgps:`${faker.address.latitude()} ${faker.address.longitude()}`,
                 reportdate:new Date(),
-                reportedcar: fields.carnumber,
-                reportfine:typeinfo.typeprice,
+                reportedcar: fields.carnumber,  
+                reportfine:20,
                 sendedwhatsapp:"",
                 reportflag:"new"
             });
