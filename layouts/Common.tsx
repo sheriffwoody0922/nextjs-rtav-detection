@@ -63,10 +63,9 @@ export default function Common ({children, layoutData}:InferProps<typeof Common.
             await axios.post("/api/common/report", formData, options).then(res=>{
                 toast.success(res.data.message)
                 getreportinfo();
-            });
+            })
 
         } catch (e: any) {
-                console.error(e);
                 const error =
                 e.response && e.response.data
                     ? e.response.data.error
