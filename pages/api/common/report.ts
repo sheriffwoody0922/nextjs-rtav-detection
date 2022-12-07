@@ -18,11 +18,23 @@ const handler = async function handler(req:any, res:any) {
     form.parse(req, async function (err:any, fields:any, files:any) {
 
       const user = await User.findOne({email: fields.useremail})
-      if(user.reportlimit == user.reportnumber){
+      let reportnumber = user.reportnumber + 1;
+      const prevdate = new Date(user.startdate);
+      const today = new Date();
+      const priorDate = new Date(new Date().setDate(today.getDate() - 30));
+      const d = priorDate.valueOf() - prevdate.valueOf();
+      console.log(d);
+      if(user.reportlimit == user.reportnumber && d < 0){
+
         return res.status(400).send({error: "You can't report now!"})
+
+      }else if(user.reportlimit == user.reportnumber && d > 0){
+
+        reportnumber = 0
+        user.startdate = new Date();
+
       }
       const fileinfo = await saveFile(files.file)
-      let reportnumber = user.reportnumber + 1;
       user.reportnumber = reportnumber;
       await user.save()
 

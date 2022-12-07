@@ -21,6 +21,10 @@ var userSchema = new Schema(
     reportnumber:{
       type:Number,
     },
+    startdate:{
+      type: Date,
+      default: Date.now,
+    },
     whatsapp:{
         type: String,
     },
