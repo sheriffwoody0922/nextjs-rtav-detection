@@ -26,7 +26,7 @@ export default function Login(){
           .then((res) => {
             console.log(res);
             toast.success("Login Successfule");
-            if(res.data === "admin"){
+            if(res.data.usertype === "admin"){
                 router.push("/admin/dashboard/all");
             }
             else{

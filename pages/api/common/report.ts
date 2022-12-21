@@ -34,6 +34,7 @@ const handler = async function handler(req:any, res:any) {
         user.startdate = new Date();
 
       }
+
       const fileinfo = await saveFile(files.file)
       user.reportnumber = reportnumber;
       await user.save()
